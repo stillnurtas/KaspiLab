@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaspiLab_HW", "ConsoleApp\KaspiLab_HW.csproj", "{F7D85942-ABF7-4D57-BAF2-994717CBBFE8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaspiLift", "..\..\Users\Nurtas\Desktop\KaspiLift\KaspiLift\KaspiLift.csproj", "{380700AC-C3A5-4180-AF7D-2EDDA718299E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaspiLift", "KaspiLift\KaspiLift.csproj", "{ED801D3A-DC1D-4F8E-88E4-2AC07F729F6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F7D85942-ABF7-4D57-BAF2-994717CBBFE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7D85942-ABF7-4D57-BAF2-994717CBBFE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7D85942-ABF7-4D57-BAF2-994717CBBFE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{380700AC-C3A5-4180-AF7D-2EDDA718299E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{380700AC-C3A5-4180-AF7D-2EDDA718299E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{380700AC-C3A5-4180-AF7D-2EDDA718299E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{380700AC-C3A5-4180-AF7D-2EDDA718299E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED801D3A-DC1D-4F8E-88E4-2AC07F729F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED801D3A-DC1D-4F8E-88E4-2AC07F729F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED801D3A-DC1D-4F8E-88E4-2AC07F729F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED801D3A-DC1D-4F8E-88E4-2AC07F729F6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
