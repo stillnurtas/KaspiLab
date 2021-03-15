@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using KaspiWareHouse.DTO;
+using KaspiWareHouse.DTO.Products;
 
 namespace KaspiWareHouse.Helpers
 {
@@ -9,7 +9,20 @@ namespace KaspiWareHouse.Helpers
     {
         public static string CreateSKU(Product product)
         {
-            return $"{product.Name.ToUpper().Substring(0, 3)}{product.ProductType.ToString().ToUpper().Substring(0, 4)}{product.Price}";
+            Console.WriteLine(product.ToString());
+            return $"{SubStringName(product.Name)}{product.Price}";
+        }
+
+        private static string SubStringName(string name)
+        {
+            if(name.Length >= 4)
+            {
+                return name.ToUpper().Substring(0, 4);
+            }
+            else
+            {
+                return name.ToUpper();
+            }
         }
     }
 }
