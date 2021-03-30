@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using KaspiWareHouse.DTO.Products;
+using KaspiWareHouse.Models.Products;
 
 namespace KaspiWareHouse.Helpers
 {
     public class SKUHelper
     {
-        public static string CreateSKU(ProductBase product)
+        public static string CreateSKU(BaseProduct product)
         {
-            Console.WriteLine(product.ToString());
             return $"{SubStringName(product.Name)}{product.Price}";
         }
 

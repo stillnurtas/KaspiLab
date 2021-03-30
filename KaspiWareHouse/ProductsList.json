@@ -1,0 +1,32 @@
+{
+  "List": [
+    {
+      "Name": "Sand",
+      "Description": "Just sand",
+      "Price": 5,
+      "Quantity": 53,
+      "MeasurementValue": 1000
+    },
+    {
+      "Name": "Water",
+      "Description": "Just water",
+      "Price": 1,
+      "Quantity": 500,
+      "MeasurementValue": 500
+    },
+    {
+      "Name": "Laptop",
+      "Description": "Just laptop",
+      "Price": 1000,
+      "Quantity": 10,
+      "MeasurementValue": 2
+    },
+    {
+      "Name": "Car",
+      "Description": "Just car",
+      "Price": 25000,
+      "Quantity": 4,
+      "MeasurementValue": 3
+    }
+  ]
+}

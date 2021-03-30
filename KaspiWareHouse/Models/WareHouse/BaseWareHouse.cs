@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using KaspiWareHouse.Helpers;
-using KaspiWareHouse.DTO.Products;
+using KaspiWareHouse.Models.Products;
+using KaspiWareHouse.Models.Employees;
 using System.Linq;
 
-namespace KaspiWareHouse.DTO
+namespace KaspiWareHouse.Models.WareHouse
 {
-    public abstract class WareHouseBase
+    public abstract class BaseWareHouse
     {
-
         public Address Address { get; private set; }
         public float Square { get; private set; }
         public Employee ResponsibleEmployee { get; private set; }
-        public List<ProductBase> ProductList { get; private set; }
+        public List<BaseProduct> ProductList { get; private set; }
 
-        public WareHouseBase()
+        protected event Action<BaseWareHouse, WareHouseEventArgs> OnCorrectProduct;
+
+        public BaseWareHouse()
         {
             Address = new Address();
-            ProductList = new List<ProductBase>();
+            ProductList = new List<BaseProduct>();
         }
 
-        public ProductBase FindProductBySku(string sku)
+        public BaseProduct FindProductBySku(string sku)
         {
             return this.ProductList.Find(pl => pl.SKU == sku);
         }
@@ -44,7 +46,7 @@ namespace KaspiWareHouse.DTO
             message = String.Empty;
             try
             {
-                this.ResponsibleEmployee = employee;
+                ResponsibleEmployee = employee;
             }
             catch(Exception e)
             {
@@ -52,7 +54,7 @@ namespace KaspiWareHouse.DTO
             }
         }
 
-        public void TransferProduct(ProductBase product, WareHouseBase wareHouse, float quantity, out string message)
+        public void TransferProduct(BaseProduct product, BaseWareHouse wareHouse, float quantity, out string message)
         {
             message = String.Empty;
             try
@@ -72,6 +74,13 @@ namespace KaspiWareHouse.DTO
                 message = e.Message;
             }
         }
-        public abstract void AddProduct(ProductBase product, out string message);
+
+        protected void RaiseEvent(BaseProduct product)
+        {
+            OnCorrectProduct?.Invoke(this, new WareHouseEventArgs(product, OnCorrectProduct.Method.Name));
+        }
+
+        public abstract void SubscribeToEvent();
+        public abstract void AddProduct(BaseProduct product, out string message);
     }
 }

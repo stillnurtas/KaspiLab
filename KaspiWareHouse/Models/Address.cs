@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KaspiWareHouse.DTO
+namespace KaspiWareHouse.Models
 {
     public class Address
     {
