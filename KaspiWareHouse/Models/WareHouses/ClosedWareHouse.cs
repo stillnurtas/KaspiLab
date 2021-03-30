@@ -7,14 +7,14 @@ using KaspiWareHouse.DTO.Products;
 
 namespace KaspiWareHouse.DTO
 {
-    public class ClosedWareHouse : WareHouse
+    public class ClosedWareHouse : WareHouseBase
     {
         public ClosedWareHouse()
         {
 
         }
 
-        public override void AddProduct(Product product, out string message)
+        public override void AddProduct(ProductBase product, out string message)
         {
             message = String.Empty;
             try
@@ -22,7 +22,6 @@ namespace KaspiWareHouse.DTO
                 var sku = SKUHelper.CreateSKU(product);
                 if (this.ProductList.Select(p => p.SKU).Contains(sku))
                 {
-                    
                     this.ProductList.Find(f => f.SKU == sku).Quantity += product.Quantity;
                 }
                 else

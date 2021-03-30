@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KaspiWareHouse.DTO.Products
 {
-    public abstract class Product
+    public abstract class ProductBase
     {
         public string Name { get; set; }
         public string SKU { get; set; }
@@ -12,7 +12,7 @@ namespace KaspiWareHouse.DTO.Products
         public decimal Price { get; set; }
         public float Quantity { get; set; }
 
-        public Product(string name, string description, decimal price, float quantity)
+        public ProductBase(string name, string description, decimal price, float quantity)
         {
             Name = name;
             Description = description;

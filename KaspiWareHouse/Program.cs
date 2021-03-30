@@ -10,19 +10,11 @@ namespace KaspiWareHouse
         static void Main(string[] args)
         {
             string message;
-            List<WareHouse> wareHouses = new List<WareHouse>();
+            List<WareHouseBase> wareHouses = new List<WareHouseBase>();
             wareHouses.Add(new OpenWareHouse());
         
             LiquidProduct liquidProduct = new LiquidProduct("Water", "1 ton of water", 500, 5);
             wareHouses[0].AddProduct(liquidProduct, out message);
         }
-    }
-
-    public enum ProductEnum
-    {
-        Loose,
-        Liquid,
-        Piece,
-        Overall
     }
 }

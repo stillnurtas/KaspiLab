@@ -6,20 +6,21 @@ using System.Linq;
 
 namespace KaspiWareHouse.DTO
 {
-    public abstract class WareHouse
+    public abstract class WareHouseBase
     {
+
         public Address Address { get; private set; }
         public float Square { get; private set; }
         public Employee ResponsibleEmployee { get; private set; }
-        public List<Product> ProductList { get; private set; }
+        public List<ProductBase> ProductList { get; private set; }
 
-        public WareHouse()
+        public WareHouseBase()
         {
             Address = new Address();
-            ProductList = new List<Product>();
+            ProductList = new List<ProductBase>();
         }
 
-        public Product FindProductBySku(string sku)
+        public ProductBase FindProductBySku(string sku)
         {
             return this.ProductList.Find(pl => pl.SKU == sku);
         }
@@ -51,7 +52,7 @@ namespace KaspiWareHouse.DTO
             }
         }
 
-        public void TransferProduct(Product product, WareHouse wareHouse, float quantity, out string message)
+        public void TransferProduct(ProductBase product, WareHouseBase wareHouse, float quantity, out string message)
         {
             message = String.Empty;
             try
@@ -71,6 +72,6 @@ namespace KaspiWareHouse.DTO
                 message = e.Message;
             }
         }
-        public abstract void AddProduct(Product product, out string message);
+        public abstract void AddProduct(ProductBase product, out string message);
     }
 }

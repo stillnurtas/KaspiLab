@@ -7,14 +7,14 @@ using KaspiWareHouse.DTO.Products;
 
 namespace KaspiWareHouse.DTO
 {
-    public class OpenWareHouse : WareHouse
+    public class OpenWareHouse : WareHouseBase
     {
         public OpenWareHouse()
         {
             
         }
 
-        public override void AddProduct(Product product, out string message)
+        public override void AddProduct(ProductBase product, out string message)
         {
             message = String.Empty;
             try

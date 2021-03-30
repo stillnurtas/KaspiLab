@@ -7,7 +7,7 @@ namespace KaspiWareHouse.Helpers
 {
     public class SKUHelper
     {
-        public static string CreateSKU(Product product)
+        public static string CreateSKU(ProductBase product)
         {
             Console.WriteLine(product.ToString());
             return $"{SubStringName(product.Name)}{product.Price}";
