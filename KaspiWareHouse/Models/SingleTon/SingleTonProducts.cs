@@ -1,5 +1,6 @@
 ﻿using KaspiWareHouse.Helpers;
 using KaspiWareHouse.Models.Products;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace KaspiWareHouse.Models.SingleTon
     {
         private static SingleTonProducts _instance;
         private Dictionary<string, BaseProduct> Catalog;
+        private Logger logger = LogManager.GetCurrentClassLogger();
         private SingleTonProducts()
         {
             Catalog = new Dictionary<string, BaseProduct>();
@@ -29,9 +31,8 @@ namespace KaspiWareHouse.Models.SingleTon
             }
         }
 
-        public void AddProduct(BaseProduct product, out string message)
+        public void AddProduct(BaseProduct product)
         {
-            message = String.Empty;
             try
             {
                 var sku = SKUHelper.CreateSKU(product);
@@ -43,26 +44,25 @@ namespace KaspiWareHouse.Models.SingleTon
                 {
                     Catalog.Add(sku, product);
                 }
-                message = $"{product.Name} added succesfully !";
+                logger.Debug($"{product.Name} added succesfully !");
             }
             catch (Exception e)
             {
-                message = e.Message;
+                logger.Error(e.Message);
             }
         }
 
-        public BaseProduct GetProduct(string sku, out string message)
+        public BaseProduct GetProduct(string sku)
         {
             BaseProduct product;
-            message = String.Empty;
             try
             {
                 Catalog.TryGetValue(sku, out product);
                 return product;
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-                message = ex.Message;
+                logger.Error(e.Message);
                 return null;
             }
         }

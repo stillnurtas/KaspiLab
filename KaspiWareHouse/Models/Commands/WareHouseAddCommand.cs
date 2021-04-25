@@ -26,7 +26,7 @@ namespace KaspiWareHouse.Models.Commands
         }
         public void Execute()
         {
-            Receiver.AddProduct(ProductToAdd, out message);
+            Receiver.AddProduct(ProductToAdd);
             NotifyOnFinish?.Invoke(EventReceiver, new AddCommandEventArgs());
         }
     }

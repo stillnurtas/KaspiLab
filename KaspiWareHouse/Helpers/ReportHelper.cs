@@ -41,8 +41,7 @@ namespace KaspiWareHouse.Helpers
         {
             List<BaseWareHouse> filteredWareHouses = new List<BaseWareHouse>();
             await Task.Run(() => {
-                //I don't know
-                //target.Where(pl => pl.);
+                filteredWareHouses = target.Where(t => t is ClosedWareHouse).ToList();
             });
             return filteredWareHouses;
         }
@@ -54,6 +53,15 @@ namespace KaspiWareHouse.Helpers
                 averageNumberOfProducts = target.Average(bwh => bwh.ProductList.Average(n => n.Quantity));
             });
             return averageNumberOfProducts;
+        }
+
+        public static void ReportsInParallel(BaseWareHouse target)
+        {
+            Parallel.Invoke(async () => {
+                await GetSortedProducts(target);
+                await GetUniqueProducts(target);
+                await GetGreatestNumberProducts(target);
+            });
         }
     }
 }

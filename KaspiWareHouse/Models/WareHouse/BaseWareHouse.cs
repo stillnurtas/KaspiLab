@@ -4,11 +4,13 @@ using KaspiWareHouse.Helpers;
 using KaspiWareHouse.Models.Products;
 using KaspiWareHouse.Models.Employees;
 using System.Linq;
+using NLog;
 
 namespace KaspiWareHouse.Models.WareHouse
 {
     public abstract class BaseWareHouse
     {
+        protected static Logger logger = LogManager.GetCurrentClassLogger();
         public Address Address { get; private set; }
         public float Square { get; private set; }
         public Employee ResponsibleEmployee { get; private set; }
@@ -27,36 +29,33 @@ namespace KaspiWareHouse.Models.WareHouse
             return this.ProductList.Find(pl => pl.SKU == sku);
         }
 
-        public void TotalSum(out decimal totalSum, out string message)
+        public void TotalSum(out decimal totalSum)
         {
             totalSum = 0;
-            message = String.Empty;
             try
             {
                 totalSum = this.ProductList.Sum(a => (decimal)a.Quantity * a.Price);
             }
             catch (Exception e)
             {
-                message = e.Message;
+                logger.Error(e.StackTrace);
             }
         }
 
-        public void SetResponsible(Employee employee, out string message)
+        public void SetResponsible(Employee employee)
         {
-            message = String.Empty;
             try
             {
                 ResponsibleEmployee = employee;
             }
             catch(Exception e)
             {
-                message = e.Message;
+                logger.Error(e.StackTrace);
             }
         }
 
-        public void TransferProduct(BaseProduct product, BaseWareHouse wareHouse, float quantity, out string message)
+        public void TransferProduct(BaseProduct product, BaseWareHouse wareHouse, float quantity)
         {
-            message = String.Empty;
             try
             {
                 var sku = SKUHelper.CreateSKU(product);
@@ -65,13 +64,13 @@ namespace KaspiWareHouse.Models.WareHouse
                 {
                     productIn.Quantity += quantity;
                     wareHouse.ProductList.Find(pl => pl.SKU == sku).Quantity -= quantity;
-                    message = $"{product.Name} transferred successfully !";
+                    logger.Debug($"{product.Name} transferred successfully !");
                 }
-                else message = $"{product.Name} is less than available in warehouse !";
+                else logger.Debug($"{product.Name} is less than available in warehouse !");
             }
             catch (Exception e)
             {
-                message = e.Message;
+                logger.Error(e.StackTrace);
             }
         }
 
@@ -81,6 +80,6 @@ namespace KaspiWareHouse.Models.WareHouse
         }
 
         public abstract void SubscribeToEvent();
-        public abstract void AddProduct(BaseProduct product, out string message);
+        public abstract void AddProduct(BaseProduct product);
     }
 }

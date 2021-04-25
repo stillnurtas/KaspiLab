@@ -6,7 +6,7 @@ using KaspiWareHouse.Helpers;
 using KaspiWareHouse.Models.Products;
 using KaspiWareHouse.Models.WareHouse;
 
-namespace KaspiWareHouse.DTO
+namespace KaspiWareHouse.Models.WareHouse
 {
     public class ClosedWareHouse : BaseWareHouse
     {
@@ -15,9 +15,8 @@ namespace KaspiWareHouse.DTO
 
         }
 
-        public override void AddProduct(BaseProduct product, out string message)
+        public override void AddProduct(BaseProduct product)
         {
-            message = String.Empty;
             try
             {
                 var sku = SKUHelper.CreateSKU(product);
@@ -31,11 +30,11 @@ namespace KaspiWareHouse.DTO
                     this.ProductList.Add(product);
                 }
                 RaiseEvent(product);
-                message = $"{product.Name} added succesfully !";
+                logger.Debug($"{product.Name} added succesfully !");
             }
             catch (Exception e)
             {
-                message = e.Message;
+                logger.Error(e.StackTrace);
             }
         }
 

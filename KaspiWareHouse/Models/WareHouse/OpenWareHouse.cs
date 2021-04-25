@@ -14,9 +14,8 @@ namespace KaspiWareHouse.Models.WareHouse
         {
         }
 
-        public override void AddProduct(BaseProduct product, out string message)
+        public override void AddProduct(BaseProduct product)
         {
-            message = String.Empty;
             try
             {
                 if (product is LooseProduct)
@@ -34,11 +33,11 @@ namespace KaspiWareHouse.Models.WareHouse
                     this.ProductList.Add(product);
                 }
                 RaiseEvent(product);
-                message = $"{product.Name} added succesfully !";
+                logger.Debug($"{product.Name} added succesfully !");
             }
             catch (Exception e)
             {
-                message = e.Message;
+                logger.Error(e.StackTrace);
             }
         }
 

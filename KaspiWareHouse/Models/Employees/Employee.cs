@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KaspiWareHouse.Models.Employees
@@ -40,12 +41,15 @@ namespace KaspiWareHouse.Models.Employees
             });
         }
 
-        public async Task ExecuteAllCommands()
+        public async Task ExecuteAllCommands(CancellationToken token)
         {
             await Task.Run(() => {
                 foreach(var commandToExecute in CommandsQueue)
                 {
-                    commandToExecute?.Execute();
+                    if (!token.IsCancellationRequested)
+                    {
+                        commandToExecute?.Execute();
+                    }
                 }
             });
         }
