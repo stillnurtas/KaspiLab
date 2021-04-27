@@ -9,10 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaspiLift", "KaspiLift\Kasp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KaspiWareHouse", "KaspiWareHouse\KaspiWareHouse.csproj", "{59430868-6F36-495B-8A46-549EBE647714}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.DataAccess", "AdventureWorks.DataAccess\AdventureWorks.DataAccess.csproj", "{8AD05C84-A190-4FD9-B7E8-216AFD47747C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.ConsoleApp", "AdventureWorks.ConsoleApp\AdventureWorks.ConsoleApp.csproj", "{04858F00-2327-4690-AEE5-950DA8B1555C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,14 +27,6 @@ Global
 		{59430868-6F36-495B-8A46-549EBE647714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59430868-6F36-495B-8A46-549EBE647714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59430868-6F36-495B-8A46-549EBE647714}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AD05C84-A190-4FD9-B7E8-216AFD47747C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AD05C84-A190-4FD9-B7E8-216AFD47747C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AD05C84-A190-4FD9-B7E8-216AFD47747C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AD05C84-A190-4FD9-B7E8-216AFD47747C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04858F00-2327-4690-AEE5-950DA8B1555C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04858F00-2327-4690-AEE5-950DA8B1555C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04858F00-2327-4690-AEE5-950DA8B1555C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04858F00-2327-4690-AEE5-950DA8B1555C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
