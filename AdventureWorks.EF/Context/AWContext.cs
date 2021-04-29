@@ -6,14 +6,13 @@ using System.Linq;
 
 namespace AdventureWorks.EF.Context
 {
-    public partial class AWContext : DbContext, IDisposable
+    public partial class AWContext : DbContext
     {
         public AWContext()
             : base("name=AdventureWorks")
         {
         }
 
-        public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeDepartmentHistory> EmployeeDepartmentHistory { get; set; }
@@ -80,7 +79,6 @@ namespace AdventureWorks.EF.Context
         public virtual DbSet<SpecialOffer> SpecialOffer { get; set; }
         public virtual DbSet<SpecialOfferProduct> SpecialOfferProduct { get; set; }
         public virtual DbSet<Store> Store { get; set; }
-        public virtual DbSet<ProductDocument> ProductDocument { get; set; }
         public virtual DbSet<vEmployee> vEmployee { get; set; }
         public virtual DbSet<vEmployeeDepartment> vEmployeeDepartment { get; set; }
         public virtual DbSet<vEmployeeDepartmentHistory> vEmployeeDepartmentHistory { get; set; }
@@ -104,7 +102,6 @@ namespace AdventureWorks.EF.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Department>()
                 .HasMany(e => e.EmployeeDepartmentHistory)
                 .WithRequired(e => e.Department)
@@ -363,10 +360,6 @@ namespace AdventureWorks.EF.Context
                 .HasMany(e => e.ProductCostHistory)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
-                .HasOptional(e => e.ProductDocument)
-                .WithRequired(e => e.Product);
 
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.ProductInventory)

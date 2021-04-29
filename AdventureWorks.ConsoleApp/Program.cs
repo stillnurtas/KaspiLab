@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Types;
+using AdventureWorks.Repository.UnitOfWork;
 
 namespace AdventureWorks.ConsoleApp
 {
@@ -12,9 +13,9 @@ namespace AdventureWorks.ConsoleApp
     {
         static void Main(string[] args)
         {
-            using (var db = new AWContext())
+            using (var db = new AWUnitOfWork(new AWContext()))
             {
-                var t = db.Document.ToList();
+                var t = db.Address.GetAll();
             }
         }
     }
