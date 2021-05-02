@@ -9,5 +9,6 @@ namespace AdventureWorks.Repository.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
+        IEnumerable<Product> GetShowCaseProducts(int pageIndex, int pageSize);
     }
 }
