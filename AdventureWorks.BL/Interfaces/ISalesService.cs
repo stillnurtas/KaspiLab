@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.BL.Interfaces
 {
-    public interface IProduct
+    public interface ISalesService
     {
-        List<ProductDTO> GetShowCaseProducts(int pageIndex, int pageSize);
+        Task SetSalesPerson(OrderDTO order);
+        Task ReserveOrderProducts(OrderDTO order);
+
     }
 }

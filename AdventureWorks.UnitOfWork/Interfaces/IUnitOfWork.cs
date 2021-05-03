@@ -29,6 +29,6 @@ namespace AdventureWorks.Repository.Interfaces
         IProductProductPhotoRepository ProductProductPhoto { get; }
         #endregion
 
-        int Save();
+        Task<int> Save();
     }
 }

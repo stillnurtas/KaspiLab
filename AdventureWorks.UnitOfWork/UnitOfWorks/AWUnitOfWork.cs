@@ -78,9 +78,9 @@ namespace AdventureWorks.Repository.UnitOfWork
             _context.Dispose();
         }
 
-        public int Save()
+        public async Task<int> Save()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
     }
 }

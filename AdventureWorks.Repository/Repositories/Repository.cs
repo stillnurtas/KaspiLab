@@ -24,29 +24,29 @@ namespace AdventureWorks.Repository.Repositories
             _context.Set<E>().Add(item);
         }
 
+        public void Update(E item)
+        {
+            _context.Entry(_context.Set<E>()).State = EntityState.Modified;
+        }
+
         public void Delete(E item)
         {
             _context.Set<E>().Remove(item);
         }
 
-        public E Get(int id)
+        public async Task<E> Get(int id)
         {
-            return _context.Set<E>().Find(id);
+            return await _context.Set<E>().FindAsync(id);
         }
 
-        public IEnumerable<E> GetAll()
+        public async Task<IEnumerable<E>> GetAll()
         {
-            return _context.Set<E>().ToList();
+            return await _context.Set<E>().ToListAsync();
         }
 
-        public IEnumerable<E> GetList(Expression<Func<E, bool>> predicate)
+        public async Task<IEnumerable<E>> GetList(Expression<Func<E, bool>> predicate)
         {
-            return _context.Set<E>().Where(predicate).ToList();
-        }
-
-        public void Update(E item)
-        {
-            _context.Set<E>().Add(item);
+            return await _context.Set<E>().Where(predicate).ToListAsync();
         }
     }
 }

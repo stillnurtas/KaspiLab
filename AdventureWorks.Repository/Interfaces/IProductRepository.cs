@@ -1,4 +1,5 @@
-﻿using AdventureWorks.EF.Models;
+﻿using AdventureWorks.DTO.Models.BL;
+using AdventureWorks.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace AdventureWorks.Repository.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
-        IEnumerable<Product> GetShowCaseProducts(int pageIndex, int pageSize);
+        Task<IEnumerable<SCProductDTO>> GetShowCaseProducts(int pageIndex, int pageSize);
     }
 }

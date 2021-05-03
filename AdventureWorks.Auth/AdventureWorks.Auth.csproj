@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{155216C6-26BE-4B26-9431-13A67BE5A341}</ProjectGuid>
+    <ProjectGuid>{9DDAF634-169E-4F0A-A66E-56C06D93C17A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdventureWorks.BL</RootNamespace>
-    <AssemblyName>AdventureWorks.BL</AssemblyName>
+    <RootNamespace>AdventureWorks.Auth</RootNamespace>
+    <AssemblyName>AdventureWorks.Auth</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,35 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IBasketService.cs" />
-    <Compile Include="Interfaces\ICacheManager.cs" />
-    <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IOrderService.cs" />
-    <Compile Include="Interfaces\ISalesService.cs" />
-    <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AdventureWorks.DTO\AdventureWorks.DTO.csproj">
-      <Project>{dd15cbfd-df12-4e46-8209-406cce6b80a6}</Project>
-      <Name>AdventureWorks.DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureWorks.EF\AdventureWorks.EF.csproj">
-      <Project>{36347662-41d2-4b69-9922-47f24e7dcfad}</Project>
-      <Name>AdventureWorks.EF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureWorks.Repository\AdventureWorks.Repository.csproj">
-      <Project>{74a63b4b-bc3c-4227-9360-2b74aab57cdd}</Project>
-      <Name>AdventureWorks.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureWorks.UnitOfWork\AdventureWorks.UnitOfWork.csproj">
-      <Project>{e7e5427e-8d8e-4479-a724-0c6b81cdc1dc}</Project>
-      <Name>AdventureWorks.UnitOfWork</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
