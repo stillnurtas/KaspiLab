@@ -9,7 +9,7 @@ namespace AdventureWorks.BL.Interfaces
 {
     public interface IOrderService
     {
-        Task CreateOrder(OrderDTO order);
+        Task CreateOrder(BasketDTO basket);
         Task CancelOrder(int orderId);
         Task GetOrderDetails(int orderId);
     }
