@@ -1,0 +1,85 @@
+﻿@model List<AdventureWorks.Web.Models.SCProductsViewModel>
+
+@{
+    ViewBag.Title = "Show Case";
+}
+
+<style>
+    .image{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
+<div class="container-fluid"></div>
+
+@section scripts{
+    <script type="text/javascript">
+        var currentIndex = 1;
+
+        $(document).ready(function () {
+            var products = @Html.Raw(Json.Encode(Model));
+            CreateShowCase(products, 4);
+        });
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                $.ajax({
+                    url: "/ShowCase/GetProducts/",
+                    data: { currentIndex: currentIndex + 1 },
+                    success: function (data) {
+                        currentIndex++;
+                        CreateShowCase(data);
+                    }
+                })
+            }
+        });
+
+        $(document).on("click", "#details", function () {
+            var productId = $(this).closest("div").attr('data-id');
+            document.location = `/ShowCase/GetDetails/?productId=${productId}`;
+        });
+
+        $(document).on("click", "#addToBasket", function () {
+            var productId = $(this).closest("div").attr('data-id');
+        });
+
+        function CreateShowCase(products, rowCount) {
+            var counter = 0;
+            var res = "";
+            var blocks = "";
+
+            for (var i = 0; i < products.length; i++) {
+                blocks += `<div class="col-md-3" style="margin-top: 3vh;">
+                                <div style="border: 1px solid #e3e2e7; border-radius: 4px">
+                                    <div>
+                                        <img class="image" src="ShowCase/GetImage/?productId=${products[i].Id}"/>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <h4>${products[i].Name}<h4>
+                                    </div>
+                                    <div class="row" data-id="${products[i].Id}" style="margin-bottom: 1vh; position: relative; left: 8%">
+                                        <button class="btn btn-primary" id="addToBasket">Add to basket</button>
+                                        <button class="btn btn-default" id="details" style="margin-left: 3vw">Details</button>
+                                    </div>
+                                </div>
+                           </div>`;
+                counter++;
+                if (counter == rowCount) {
+                    res += `<div class="row">${blocks}</div>`;
+                    counter = 0;
+                    blocks = "";
+                }
+
+                if (i == products.length - 1) {
+                    res += `<div class="row">${blocks}</div>`;
+                }
+            }
+
+            $(".container-fluid").append(res);
+        }
+
+    </script>
+}

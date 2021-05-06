@@ -9,8 +9,8 @@ namespace AdventureWorks.BL.Interfaces
 {
     public interface IProductService
     {
-        Task<IEnumerable<SCProductDTO>> GetShowCaseProductList();
-        Task<IEnumerable<SCProductDTO>> GetShowCaseProductList(int pageIndex, int pageSize);
-        Task<SCProductDTO> GetProductDetails(int id);
+        Task<IEnumerable<SCProductDTO>> GetProducts(int pageIndex, int pageSize);
+        Task<ProductDetailsDTO> GetDetails(int productId);
+        Task<byte[]> GetImage(int productId);
     }
 }

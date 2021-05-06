@@ -9,7 +9,7 @@ namespace AdventureWorks.DTO.Models.BL
 {
     public class SCProductDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public byte[] Image { get; set; }
     }
 }

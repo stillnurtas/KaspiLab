@@ -12,25 +12,38 @@ namespace AdventureWorks.BL.Services
 {
     public class ProductService : IProductService
     {
-        public Task<SCProductDTO> GetProductDetails(int id)
+        public async Task<ProductDetailsDTO> GetDetails(int productId)
         {
-            throw new NotImplementedException();
+            using (var uow = new AWUnitOfWork(new AWContext()))
+            {
+                var details = await uow.Product.GetDetails(productId);
+                return details;
+            }
         }
 
-        public async Task<IEnumerable<SCProductDTO>> GetShowCaseProductList()
+        public async Task<byte[]> GetImage(int productId)
         {
-            using (var db = new AWUnitOfWork(new AWContext()))
+            using (var uow = new AWUnitOfWork(new AWContext()))
             {
-                var dbProducts = await db.Product.GetShowCaseProducts(1, 10);
+                var imageData = await uow.Product.GetImage(productId);
+                return imageData; 
+            }
+        }
+
+        public async Task<IEnumerable<SCProductDTO>> GetProducts()
+        {
+            using (var uow = new AWUnitOfWork(new AWContext()))
+            {
+                var dbProducts = await uow.Product.GetShowCaseProducts(1, 10);
                 return dbProducts;
             }
         }
 
-        public async Task<IEnumerable<SCProductDTO>> GetShowCaseProductList(int pageIndex, int pageSize)
+        public async Task<IEnumerable<SCProductDTO>> GetProducts(int pageIndex, int pageSize)
         {
-            using (var db = new AWUnitOfWork(new AWContext()))
+            using (var uow = new AWUnitOfWork(new AWContext()))
             {
-                var dbProducts = await db.Product.GetShowCaseProducts(pageIndex, pageSize);
+                var dbProducts = await uow.Product.GetShowCaseProducts(pageIndex, pageSize);
                 return dbProducts;
             }
         }
