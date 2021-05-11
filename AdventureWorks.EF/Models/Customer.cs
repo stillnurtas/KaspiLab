@@ -1,5 +1,6 @@
 namespace AdventureWorks.EF.Models
 {
+    using AdventureWorks.EF.Models.IdentityModels;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace AdventureWorks.EF.Models
         {
             SalesOrderHeader = new HashSet<SalesOrderHeader>();
         }
+
 
         public int CustomerID { get; set; }
 

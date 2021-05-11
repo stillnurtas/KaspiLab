@@ -15,9 +15,9 @@ namespace AdventureWorks.ConsoleApp
     {
         static void Main(string[] args)
         {
-            List<SCProductDTO> res = new List<SCProductDTO>();
-            using (var db = new AWContext())
+            using (var db = new IdentityContext())
             {
+                var t = db.Roles.ToList();
             }
         }
     }
