@@ -1,6 +1,7 @@
 ﻿using AdventureWorks.BL.Interfaces;
 using AdventureWorks.DTO.Models.BL;
-using AdventureWorks.EF.Context;
+using AdventureWorks.EF.Contexts;
+using AdventureWorks.Repository.Interfaces;
 using AdventureWorks.Repository.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -12,38 +13,45 @@ namespace AdventureWorks.BL.Services
 {
     public class ProductService : IProductService
     {
+        private readonly AWUnitOfWork _uow;
+
+        public ProductService()
+        {
+            _uow = new AWUnitOfWork(new AWContext());
+        }
+
         public async Task<ProductDetailsDTO> GetDetails(int productId)
         {
-            using (var uow = new AWUnitOfWork(new AWContext()))
+            using (_uow)
             {
-                var details = await uow.Product.GetDetails(productId);
+                var details = await _uow.Product.GetDetails(productId);
                 return details;
             }
         }
 
         public async Task<byte[]> GetImage(int productId)
         {
-            using (var uow = new AWUnitOfWork(new AWContext()))
+            using (_uow)
             {
-                var imageData = await uow.Product.GetImage(productId);
+                var imageData = await _uow.Product.GetImage(productId);
                 return imageData; 
             }
         }
 
         public async Task<IEnumerable<SCProductDTO>> GetProducts()
         {
-            using (var uow = new AWUnitOfWork(new AWContext()))
+            using (_uow)
             {
-                var dbProducts = await uow.Product.GetShowCaseProducts(1, 10);
+                var dbProducts = await _uow.Product.GetShowCaseProducts(1, 10);
                 return dbProducts;
             }
         }
 
         public async Task<IEnumerable<SCProductDTO>> GetProducts(int pageIndex, int pageSize)
         {
-            using (var uow = new AWUnitOfWork(new AWContext()))
+            using (_uow)
             {
-                var dbProducts = await uow.Product.GetShowCaseProducts(pageIndex, pageSize);
+                var dbProducts = await _uow.Product.GetShowCaseProducts(pageIndex, pageSize);
                 return dbProducts;
             }
         }
