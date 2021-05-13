@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventureWorks.EF.Context
+namespace AdventureWorks.EF.Contexts
 {
     public class IdentityContext : IdentityDbContext<AppUser>
     {

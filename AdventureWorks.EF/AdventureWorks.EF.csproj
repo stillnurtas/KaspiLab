@@ -62,10 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\IdentityContext.cs" />
+    <Compile Include="Contexts\IdentityContext.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressType.cs" />
-    <Compile Include="Context\AWContext.cs" />
+    <Compile Include="Contexts\AWContext.cs" />
     <Compile Include="Models\BillOfMaterials.cs" />
     <Compile Include="Models\BusinessEntity.cs" />
     <Compile Include="Models\BusinessEntityAddress.cs" />

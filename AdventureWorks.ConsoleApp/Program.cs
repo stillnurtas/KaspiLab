@@ -1,4 +1,4 @@
-﻿using AdventureWorks.EF.Context;
+﻿using AdventureWorks.EF.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

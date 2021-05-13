@@ -1,4 +1,4 @@
-﻿using AdventureWorks.EF.Context;
+﻿using AdventureWorks.EF.Contexts;
 using AdventureWorks.EF.Models;
 using AdventureWorks.Repository.Interfaces;
 using System;

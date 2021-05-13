@@ -56,10 +56,11 @@
   <ItemGroup>
     <Compile Include="Identity\AppRoleManager.cs" />
     <Compile Include="Identity\AppUserManager.cs" />
-    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventureWorks.EF\AdventureWorks.EF.csproj">
       <Project>{36347662-41d2-4b69-9922-47f24e7dcfad}</Project>

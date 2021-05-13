@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace AdventureWorks.EF.Context
+namespace AdventureWorks.EF.Contexts
 {
     public partial class AWContext : DbContext
     {

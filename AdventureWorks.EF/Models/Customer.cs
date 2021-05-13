@@ -16,7 +16,6 @@ namespace AdventureWorks.EF.Models
             SalesOrderHeader = new HashSet<SalesOrderHeader>();
         }
 
-
         public int CustomerID { get; set; }
 
         public int? PersonID { get; set; }
