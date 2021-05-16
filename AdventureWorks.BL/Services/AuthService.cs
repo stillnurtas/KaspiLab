@@ -1,9 +1,12 @@
-﻿using AdventureWorks.Auth.Identity;
+﻿using AdventureWorks.Auth.CustomIdentity;
+using AdventureWorks.Auth.Identity;
 using AdventureWorks.BL.Infrastructure;
 using AdventureWorks.BL.Interfaces;
 using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.EF.Contexts;
+using AdventureWorks.EF.Models;
 using AdventureWorks.EF.Models.IdentityModels;
+using AdventureWorks.Repository.UnitOfWork;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -17,29 +20,33 @@ namespace AdventureWorks.BL.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IdentityContext _context;
-        private readonly AppRoleManager _roleManager;
-        private readonly AppUserManager _userManager;
+        private readonly AWUnitOfWork _uow;
 
         public AuthService()
         {
-            _context = new IdentityContext();
-            _roleManager = new AppRoleManager(new RoleStore<AppRole>(_context));
-            _userManager = new AppUserManager(new UserStore<AppUser>(_context));
+            _uow = new AWUnitOfWork(new AWContext());
         }
 
         public async Task<ClaimsIdentity> Authenticate(UserDTO userDto)
         {
-            AppUser user = await _userManager.FindAsync(userDto.Email, userDto.Password);
-            ClaimsIdentity claim = user != null ? await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie) : null;
+            AppUser user = await _uow.AppUserManager.FindAsync(userDto.Email, userDto.Password);
+            ClaimsIdentity claim = user != null ? await _uow.AppUserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie) : null;
             return claim;
         }
 
         public async Task<OperationDetails> Register(UserDTO userDto)
         {
-            AppUser user = await _userManager.FindByEmailAsync(userDto.Email);
+            AppUser user = await _uow.AppUserManager.FindByEmailAsync(userDto.Email);
             if (user == null)
             {
+                user = new AppUser {  UserName = userDto.UserName };
+                var result = await _uow.AppUserManager.CreateAsync(user, userDto.Password);
+                if (result.Errors.Count() > 0)
+                    return new OperationDetails(OperationDetails.Statuses.Error, result.Errors.FirstOrDefault(), "");
+
+                await _uow.AppUserManager.AddToRoleAsync(user.Id, userDto.Role);
+                _uow.Customer.Create(new Customer { rowguid = Guid.NewGuid(), ModifiedDate = DateTime.Now });
+                await _uow.Save();
                 return new OperationDetails(OperationDetails.Statuses.Success, "Registration was successful!", "");
             }
             else
@@ -50,7 +57,7 @@ namespace AdventureWorks.BL.Services
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _uow.Dispose();
         }
     }
 }

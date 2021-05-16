@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.EF.Models.IdentityModels
 {
-    public class AppUser : IdentityUser
+    public class AppUser : IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>, IUser<int>
     {
+        public virtual Customer Customer { get; set; }
     }
 }

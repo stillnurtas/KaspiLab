@@ -16,6 +16,7 @@ namespace AdventureWorks.EF.Models
             SalesOrderHeader = new HashSet<SalesOrderHeader>();
         }
 
+        [ForeignKey("AppUser")]
         public int CustomerID { get; set; }
 
         public int? PersonID { get; set; }
@@ -33,11 +34,8 @@ namespace AdventureWorks.EF.Models
 
         public DateTime ModifiedDate { get; set; }
 
-        public virtual Person Person { get; set; }
-
         public virtual SalesTerritory SalesTerritory { get; set; }
-
-        public virtual Store Store { get; set; }
+        public virtual AppUser AppUser { get; set; } 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrderHeader> SalesOrderHeader { get; set; }

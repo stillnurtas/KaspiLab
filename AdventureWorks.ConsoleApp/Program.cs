@@ -8,6 +8,9 @@ using Microsoft.SqlServer.Types;
 using AdventureWorks.Repository.UnitOfWork;
 using AdventureWorks.DTO.Models.BL;
 using System.Data.Entity;
+using AdventureWorks.EF.Models.IdentityModels;
+using AdventureWorks.EF.Models;
+using AdventureWorks.Repository.Repositories;
 
 namespace AdventureWorks.ConsoleApp
 {
@@ -15,9 +18,14 @@ namespace AdventureWorks.ConsoleApp
     {
         static void Main(string[] args)
         {
-            using (var db = new IdentityContext())
+            Test().GetAwaiter().GetResult();
+        }
+
+        static async Task Test()
+        {
+            using (var db = new AWUnitOfWork(new AWContext()))
             {
-                var t = db.Roles.ToList();
+                var t = await db.Customer.GetAll();
             }
         }
     }
