@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.EF.Models.IdentityModels
 {
-    public class AppRole : IdentityRole<int, AppUserRole> 
+    public class AppUserRole : IdentityUserRole<int> 
     { 
     }
 }

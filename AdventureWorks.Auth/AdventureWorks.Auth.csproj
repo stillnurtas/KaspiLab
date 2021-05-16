@@ -54,13 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Identity\AppRoleManager.cs" />
-    <Compile Include="Identity\AppUserManager.cs" />
+    <Compile Include="CustomIdentity\AppRoleStore.cs" />
+    <Compile Include="CustomIdentity\AppUserStore.cs" />
+    <Compile Include="IdentityManagers\AppRoleManager.cs" />
+    <Compile Include="IdentityManagers\AppUserManager.cs" />
+    <Compile Include="Intefaces\IAppRoleStore.cs" />
+    <Compile Include="Intefaces\IAppUserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AdventureWorks.EF\AdventureWorks.EF.csproj">
       <Project>{36347662-41d2-4b69-9922-47f24e7dcfad}</Project>

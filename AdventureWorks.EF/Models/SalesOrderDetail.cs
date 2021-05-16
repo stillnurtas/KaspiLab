@@ -42,7 +42,5 @@ namespace AdventureWorks.EF.Models
         public DateTime ModifiedDate { get; set; }
 
         public virtual SalesOrderHeader SalesOrderHeader { get; set; }
-
-        public virtual SpecialOfferProduct SpecialOfferProduct { get; set; }
     }
 }

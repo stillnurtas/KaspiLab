@@ -25,9 +25,5 @@ namespace AdventureWorks.EF.Models
         public int PhoneNumberTypeID { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
-        public virtual Person Person { get; set; }
-
-        public virtual PhoneNumberType PhoneNumberType { get; set; }
     }
 }

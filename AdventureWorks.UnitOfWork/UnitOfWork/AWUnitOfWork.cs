@@ -1,6 +1,11 @@
-﻿using AdventureWorks.EF.Contexts;
+﻿using AdventureWorks.Auth.CustomIdentity;
+using AdventureWorks.Auth.Identity;
+using AdventureWorks.Auth.IdentityManagers;
+using AdventureWorks.EF.Contexts;
+using AdventureWorks.EF.Models.IdentityModels;
 using AdventureWorks.Repository.Interfaces;
 using AdventureWorks.Repository.Repositories;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,24 +20,26 @@ namespace AdventureWorks.Repository.UnitOfWork
         public AWUnitOfWork(AWContext context)
         {
             _context = context;
-            Address = new AddressRepository(_context);
-            BusinessEntity = new BusinessEntityRepository(_context);
-            BusinessEntityAddress = new BusinessEntityAddressRepository(_context);
-            PersonPhone = new PersonPhoneRepository(_context);
-            StateProvince = new StateProvinceRepository(_context);
-            Customer = new CustomerRepository(_context);
-            SalesPerson = new SalesPersonRepository(_context);
-            SalesOrderHeader = new SalesOrderHeaderRepository(_context);
-            SalesOrderDetail = new SalesOrderDetailRepository(_context);
-            ShoppingCartItem = new ShoppingCartItemRepository(_context);
-            SalesTerritory = new SalesTerritoryRepository(_context);
-            Product = new ProductRepository(_context);
-            ProductCategory = new ProductCategoryRepository(_context);
-            ProductDescription = new ProductDescriptionRepository(_context);
-            ProductInventory = new ProductInventoryRepository(_context);
-            ProductListPriceHistory = new ProductListPriceHistoryRepository(_context);
-            ProductPhoto = new ProductPhotoRepository(_context);
-            ProductProductPhoto = new ProductProductPhotoRepository(_context);
+            Address = new AddressRepository(context);
+            BusinessEntity = new BusinessEntityRepository(context);
+            BusinessEntityAddress = new BusinessEntityAddressRepository(context);
+            PersonPhone = new PersonPhoneRepository(context);
+            StateProvince = new StateProvinceRepository(context);
+            Customer = new CustomerRepository(context);
+            SalesPerson = new SalesPersonRepository(context);
+            SalesOrderHeader = new SalesOrderHeaderRepository(context);
+            SalesOrderDetail = new SalesOrderDetailRepository(context);
+            ShoppingCartItem = new ShoppingCartItemRepository(context);
+            SalesTerritory = new SalesTerritoryRepository(context);
+            Product = new ProductRepository(context);
+            ProductCategory = new ProductCategoryRepository(context);
+            ProductDescription = new ProductDescriptionRepository(context);
+            ProductInventory = new ProductInventoryRepository(context);
+            ProductListPriceHistory = new ProductListPriceHistoryRepository(context);
+            ProductPhoto = new ProductPhotoRepository(context);
+            ProductProductPhoto = new ProductProductPhotoRepository(context);
+            AppUserManager = new AppUserManager(new AppUserStore(context));
+            AppRoleManager = new AppRoleManager(new AppRoleStore(context));
         }
 
         #region repos property
@@ -71,6 +78,8 @@ namespace AdventureWorks.Repository.UnitOfWork
         public IProductPhotoRepository ProductPhoto { get; private set; }
 
         public IProductProductPhotoRepository ProductProductPhoto { get; private set; }
+        public AppUserManager AppUserManager { get; private set; }
+        public AppRoleManager AppRoleManager { get; private set; }
         #endregion
 
         public void Dispose()
