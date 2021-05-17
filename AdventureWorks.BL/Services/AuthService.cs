@@ -9,6 +9,7 @@ using AdventureWorks.EF.Models.IdentityModels;
 using AdventureWorks.Repository.UnitOfWork;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +48,6 @@ namespace AdventureWorks.BL.Services
                         return new OperationDetails(OperationDetails.Statuses.Error, result.Errors.FirstOrDefault(), "");
 
                     await _uow.AppUserManager.AddToRoleAsync(user.Id, userDto.Role);
-                    _uow.Customer.Create(new Customer { rowguid = Guid.NewGuid(), ModifiedDate = DateTime.Now });
-                    await _uow.Save();
                     return new OperationDetails(OperationDetails.Statuses.Success, "Registration was successful!", "");
                 }
                 else
