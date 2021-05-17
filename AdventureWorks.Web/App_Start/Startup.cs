@@ -19,12 +19,12 @@ namespace AdventureWorks.Web.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext<IAuthService>(() => new AuthService());
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Auth/Login")
-            });
+            //app.CreatePerOwinContext<IAuthService>(() => new AuthService());
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+            //    LoginPath = new PathString("/Auth/Login")
+            //});
         }
     }
 }

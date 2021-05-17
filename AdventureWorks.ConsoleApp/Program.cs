@@ -15,6 +15,7 @@ using AdventureWorks.Auth.Identity;
 using AdventureWorks.Auth.CustomIdentity;
 using AdventureWorks.Auth.IdentityManagers;
 using Microsoft.AspNet.Identity;
+using AdventureWorks.BL.Services;
 
 namespace AdventureWorks.ConsoleApp
 {
@@ -27,21 +28,11 @@ namespace AdventureWorks.ConsoleApp
 
         static async Task Test()
         {
-            var mng = new AppUserManager(new AppUserStore(new AWContext()));
-            var user = new AppUser { UserName = "nurtas@gmail.com", Email = "nurtas@gmail.com" };
-            var result = await mng.CreateAsync(user);
             try
             {
-                using (var db = new AWUnitOfWork(new AWContext()))
-                {
-                    var t = db.AppUserManager.CreateAsync(new AppUser { UserName = "nuras@gmail.com", Email = "nurtas@gmail.com" });
-                    
-                }
-                //var mng = new AppUserManager(new AppUserStore(new AWContext()));
-                //var role = new AppRoleManager(new AppRoleStore(new AWContext()));
-                //var user = new AppUser { UserName = "nurtas@gmail.com", Email = "nurtas@gmail.com" };
-                //var result = await mng.CreateAsync(user);
-                //var res = await mng.AddToRoleAsync(1, "user");
+                AuthService service = new AuthService();
+                var t = new UserDTO { Email = "nurtas2@mail.ru", UserName = "nurtas2@mail.ru", Password = "123456", Role = "admin" };
+                var res = await service.Register(t);
             }
             catch (Exception e)
             {
