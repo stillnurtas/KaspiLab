@@ -1,4 +1,5 @@
-﻿using AdventureWorks.Web.Util;
+﻿using AdventureWorks.Web.App_Start;
+using AdventureWorks.Web.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;

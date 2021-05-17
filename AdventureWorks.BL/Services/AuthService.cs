@@ -36,22 +36,29 @@ namespace AdventureWorks.BL.Services
 
         public async Task<OperationDetails> Register(UserDTO userDto)
         {
-            AppUser user = await _uow.AppUserManager.FindByEmailAsync(userDto.Email);
-            if (user == null)
+            try
             {
-                user = new AppUser {  UserName = userDto.UserName };
-                var result = await _uow.AppUserManager.CreateAsync(user, userDto.Password);
-                if (result.Errors.Count() > 0)
-                    return new OperationDetails(OperationDetails.Statuses.Error, result.Errors.FirstOrDefault(), "");
+                AppUser user = await _uow.AppUserManager.FindByEmailAsync(userDto.Email);
+                if (user == null)
+                {
+                    user = new AppUser { UserName = userDto.Email, Email = userDto.Email };
+                    var result = await _uow.AppUserManager.CreateAsync(user, userDto.Password);
+                    if (result.Errors.Count() > 0)
+                        return new OperationDetails(OperationDetails.Statuses.Error, result.Errors.FirstOrDefault(), "");
 
-                await _uow.AppUserManager.AddToRoleAsync(user.Id, userDto.Role);
-                _uow.Customer.Create(new Customer { rowguid = Guid.NewGuid(), ModifiedDate = DateTime.Now });
-                await _uow.Save();
-                return new OperationDetails(OperationDetails.Statuses.Success, "Registration was successful!", "");
+                    await _uow.AppUserManager.AddToRoleAsync(user.Id, userDto.Role);
+                    _uow.Customer.Create(new Customer { rowguid = Guid.NewGuid(), ModifiedDate = DateTime.Now });
+                    await _uow.Save();
+                    return new OperationDetails(OperationDetails.Statuses.Success, "Registration was successful!", "");
+                }
+                else
+                {
+                    return new OperationDetails(OperationDetails.Statuses.Error, "User with this login exists", "Email");
+                }
             }
-            else
+            catch(Exception e)
             {
-                return new OperationDetails(OperationDetails.Statuses.Error, "User with this login exists", "Email");
+                return new OperationDetails(OperationDetails.Statuses.Error, $"{e.Message}", "Exception");
             }
         }
 

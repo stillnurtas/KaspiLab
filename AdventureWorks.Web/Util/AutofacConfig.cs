@@ -12,6 +12,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using AdventureWorks.Auth.Identity;
+using AdventureWorks.Auth.IdentityManagers;
+using Microsoft.Owin.Security;
 
 namespace AdventureWorks.Web.Util
 {
@@ -30,6 +33,10 @@ namespace AdventureWorks.Web.Util
             builder.RegisterType<CacheManager>().As<ICacheManager>()
                                                 .WithParameter("cache", new MemoryCache(new MemoryCacheOptions()))
                                                 .SingleInstance();
+            builder.RegisterType<AuthService>().As<IAuthService>().InstancePerRequest();
+            //builder.RegisterType<IAuthService>().AsSelf().InstancePerRequest();
+            //builder.RegisterType<AppUserManager>().AsSelf().InstancePerRequest();
+            builder.Register(r => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
 
             #endregion
 
