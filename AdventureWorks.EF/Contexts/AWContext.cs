@@ -12,7 +12,7 @@ namespace AdventureWorks.EF.Contexts
     public partial class AWContext : IdentityDbContext<AppUser, AppRole, int, AppUserLogin, AppUserRole, AppUserClaim>
     {
         public AWContext()
-            : base("name=AWContext")
+            : base("name=AdventureWorks")
         {
         }
 

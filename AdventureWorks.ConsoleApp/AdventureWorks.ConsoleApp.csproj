@@ -70,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdventureWorks.Auth\AdventureWorks.Auth.csproj">
+      <Project>{9DDAF634-169E-4F0A-A66E-56C06D93C17A}</Project>
+      <Name>AdventureWorks.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AdventureWorks.DTO\AdventureWorks.DTO.csproj">
       <Project>{dd15cbfd-df12-4e46-8209-406cce6b80a6}</Project>
       <Name>AdventureWorks.DTO</Name>

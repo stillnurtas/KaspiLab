@@ -209,6 +209,8 @@
     </Compile>
     <Compile Include="Models\Auth\LoginViewModel.cs" />
     <Compile Include="Models\Auth\RegisterViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SCProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AutofacConfig.cs" />
@@ -272,6 +274,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdventureWorks.Auth\AdventureWorks.Auth.csproj">
+      <Project>{9DDAF634-169E-4F0A-A66E-56C06D93C17A}</Project>
+      <Name>AdventureWorks.Auth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AdventureWorks.BL\AdventureWorks.BL.csproj">
       <Project>{155216c6-26be-4b26-9431-13a67be5a341}</Project>
       <Name>AdventureWorks.BL</Name>
