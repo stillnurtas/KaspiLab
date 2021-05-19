@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.Service
 {
-    public class ProductService : IProductService
+    public class ProductManager : IProductManager
     {
         public Task<ProductDetailsDTO> GetDetails(int productId)
         {
