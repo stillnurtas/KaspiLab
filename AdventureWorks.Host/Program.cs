@@ -12,7 +12,7 @@ namespace AdventureWorks.Host
 {
     class Program
     {
-        private static Dictionary<Type, ServiceHost> services;
+        private static Dictionary<Type, ServiceHost> services = new Dictionary<Type, ServiceHost>();
 
         static void Main(string[] args)
         {
@@ -27,19 +27,23 @@ namespace AdventureWorks.Host
             {
                 Start(args);
                 Console.WriteLine("Press any key to stop");
-                Console.ReadKey();
+                Console.ReadKey(true);
                 Stop();
             }
         }
 
         static void Start(string[] args)
         {
-            RegisterHost(typeof(ProductService));
+            RegisterHost(typeof(ProductManager));
         }
 
         static void Stop()
         {
-
+            var keys = services.Keys.ToList();
+            foreach(var key in keys)
+            {
+                UnRegisterHost(key);
+            }
         }
 
         static void RegisterHost(Type t)
@@ -61,6 +65,10 @@ namespace AdventureWorks.Host
         #region override servicebase
         public class Service : ServiceBase
         {
+            public Service()
+            {
+                this.ServiceName = "WCF";
+            }
             protected override void OnStart(string[] args)
             {
                 Program.Start(args);

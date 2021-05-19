@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace AdventureWorks.IService
 {
     [ServiceContract]
-    public interface IProductService
+    public interface IProductManager
     {
         [OperationContract]
         Task<IEnumerable<SCProductDTO>> GetProducts(int pageIndex, int pageSize);
