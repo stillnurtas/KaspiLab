@@ -39,7 +39,10 @@ namespace AdventureWorks.Host
 
         static void Stop()
         {
-
+            foreach(var srv in services.Keys.ToList())
+            {
+                UnRegisterHost(srv);
+            }
         }
 
         static void RegisterHost(Type t)
