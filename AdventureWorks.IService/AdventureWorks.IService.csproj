@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IProductService.cs" />
+    <Compile Include="Identity\AppRoleManager.cs" />
+    <Compile Include="Identity\AppUserManager.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
