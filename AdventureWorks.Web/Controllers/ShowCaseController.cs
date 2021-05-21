@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using AdventureWorks.Repository.Interfaces;
+using AdventureWorks.Web.AW.Services.ProducMng;
 
 namespace AdventureWorks.Web.Controllers
 {
@@ -36,8 +37,7 @@ namespace AdventureWorks.Web.Controllers
         public async Task<ActionResult> GetImage(int productId)
         {
             var imageData = (byte[])_cacheManager.Get($"product_image_{productId}");
-            
-            if(imageData == null)
+            if (imageData == null)
             {
                 imageData = await _productService.GetImage(productId);
                 _cacheManager.Set($"product_image_{productId}", imageData);

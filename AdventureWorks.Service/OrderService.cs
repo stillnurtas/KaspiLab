@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.Service
 {
-    public class ProductManager : IProductManager
+    public class OrderService : IOrderService
     {
-        public Task<ProductDetailsDTO> GetDetails(int productId)
+        public Task CancelOrder(int orderId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<byte[]> GetImage(int productId)
+        public Task CreateOrder(BasketDTO basket)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<SCProductDTO>> GetProducts(int pageIndex, int pageSize)
+        public Task GetOrderDetails(int orderId)
         {
             throw new NotImplementedException();
         }

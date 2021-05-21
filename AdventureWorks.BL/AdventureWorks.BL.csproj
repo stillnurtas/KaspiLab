@@ -106,17 +106,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAuthService.cs" />
-    <Compile Include="Interfaces\IBasketService.cs" />
-    <Compile Include="Interfaces\ICacheManager.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IOrderService.cs" />
-    <Compile Include="Interfaces\ISalesService.cs" />
-    <Compile Include="Services\AuthService.cs" />
-    <Compile Include="Services\CacheManager.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
-    <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

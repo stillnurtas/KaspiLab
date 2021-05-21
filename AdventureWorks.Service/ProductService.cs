@@ -1,7 +1,6 @@
-﻿using AdventureWorks.BL.Interfaces;
-using AdventureWorks.DTO.Models.BL;
+﻿using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.EF.Contexts;
-using AdventureWorks.Repository.Interfaces;
+using AdventureWorks.IService;
 using AdventureWorks.Repository.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventureWorks.BL.Services
+namespace AdventureWorks.Service
 {
     public class ProductService : IProductService
     {
@@ -34,16 +33,7 @@ namespace AdventureWorks.BL.Services
             using (_uow)
             {
                 var imageData = await _uow.Product.GetImage(productId);
-                return imageData; 
-            }
-        }
-
-        public async Task<IEnumerable<SCProductDTO>> GetProducts()
-        {
-            using (_uow)
-            {
-                var dbProducts = await _uow.Product.GetShowCaseProducts(1, 10);
-                return dbProducts;
+                return imageData;
             }
         }
 

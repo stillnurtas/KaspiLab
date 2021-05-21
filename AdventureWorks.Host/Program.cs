@@ -34,7 +34,8 @@ namespace AdventureWorks.Host
 
         static void Start(string[] args)
         {
-            RegisterHost(typeof(ProductManager));
+            RegisterHost(typeof(ProductService));
+            RegisterHost(typeof(AuthService));
         }
 
         static void Stop()

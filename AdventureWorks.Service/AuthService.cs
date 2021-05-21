@@ -1,23 +1,18 @@
-﻿using AdventureWorks.Auth.CustomIdentity;
-using AdventureWorks.Auth.Identity;
-using AdventureWorks.BL.Infrastructure;
-using AdventureWorks.BL.Interfaces;
-using AdventureWorks.DTO.Models.BL;
-using AdventureWorks.EF.Contexts;
-using AdventureWorks.EF.Models;
-using AdventureWorks.EF.Models.IdentityModels;
-using AdventureWorks.Repository.UnitOfWork;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AdventureWorks.BL.Infrastructure;
+using AdventureWorks.DTO.Models.BL;
+using AdventureWorks.EF.Contexts;
+using AdventureWorks.EF.Models.IdentityModels;
+using AdventureWorks.IService;
+using AdventureWorks.Repository.UnitOfWork;
+using Microsoft.AspNet.Identity;
 
-namespace AdventureWorks.BL.Services
+namespace AdventureWorks.Service
 {
     public class AuthService : IAuthService
     {
@@ -55,15 +50,10 @@ namespace AdventureWorks.BL.Services
                     return new OperationDetails(OperationDetails.Statuses.Error, "User with this login exists", "Email");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new OperationDetails(OperationDetails.Statuses.Error, $"{e.Message}", "Exception");
             }
-        }
-
-        public void Dispose()
-        {
-            _uow.Dispose();
         }
     }
 }

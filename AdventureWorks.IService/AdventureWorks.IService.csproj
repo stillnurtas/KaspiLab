@@ -43,10 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IProductManager.cs" />
+    <Compile Include="IAuthService.cs" />
+    <Compile Include="IBasketService.cs" />
+    <Compile Include="IOrderService.cs" />
+    <Compile Include="IProductService.cs" />
+    <Compile Include="ISalesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdventureWorks.Auth\AdventureWorks.Auth.csproj">
+      <Project>{9ddaf634-169e-4f0a-a66e-56c06d93c17a}</Project>
+      <Name>AdventureWorks.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdventureWorks.BL\AdventureWorks.BL.csproj">
+      <Project>{155216c6-26be-4b26-9431-13a67be5a341}</Project>
+      <Name>AdventureWorks.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AdventureWorks.DTO\AdventureWorks.DTO.csproj">
       <Project>{dd15cbfd-df12-4e46-8209-406cce6b80a6}</Project>
       <Name>AdventureWorks.DTO</Name>

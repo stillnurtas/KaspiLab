@@ -54,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,12 +64,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\AW.ProductMng\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\AW.ProductMng\ProductManager.wsdl" />
+    <None Include="Connected Services\AW.ProductMng\ProductMng.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.ProductMng\ProductMng1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.ProductMng\ProductMng2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.ProductDetailsDTO.datasource" />
+    <None Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.SCProductDTO.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventureWorks.Auth\AdventureWorks.Auth.csproj">
@@ -94,6 +113,27 @@
       <Project>{e7e5427e-8d8e-4479-a724-0c6b81cdc1dc}</Project>
       <Name>AdventureWorks.UnitOfWork</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AW.ProductMng\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AW.ProductMng\ProductMng.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AW.ProductMng\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AW.ProductMng\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AW.ProductMng\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

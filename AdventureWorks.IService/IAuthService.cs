@@ -4,14 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventureWorks.BL.Interfaces
+namespace AdventureWorks.IService
 {
-    public interface IAuthService : IDisposable
+    [ServiceContract]
+    public interface IAuthService
     {
+        [OperationContract]
         Task<OperationDetails> Register(UserDTO userDto);
+
+        [OperationContract]
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
     }
 }

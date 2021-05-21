@@ -16,6 +16,7 @@ using AdventureWorks.Auth.CustomIdentity;
 using AdventureWorks.Auth.IdentityManagers;
 using Microsoft.AspNet.Identity;
 using AdventureWorks.BL.Services;
+using AdventureWorks.ConsoleApp.AW.ProductMng;
 
 namespace AdventureWorks.ConsoleApp
 {
@@ -23,21 +24,23 @@ namespace AdventureWorks.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Test().GetAwaiter().GetResult();
+            using (ProductManagerClient client = new ProductManagerClient())
+            {
+            }
         }
 
-        static async Task Test()
-        {
-            try
-            {
-                AuthService service = new AuthService();
-                var t = new UserDTO { Email = "nurtas2@mail.ru", UserName = "nurtas2@mail.ru", Password = "123456", Role = "admin" };
-                var res = await service.Register(t);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
+        //static async Task Test()
+        //{
+        //    try
+        //    {
+        //        AuthService service = new AuthService();
+        //        var t = new UserDTO { Email = "nurtas2@mail.ru", UserName = "nurtas2@mail.ru", Password = "123456", Role = "admin" };
+        //        var res = await service.Register(t);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //}
     }
 }

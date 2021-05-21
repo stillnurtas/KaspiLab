@@ -126,6 +126,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -201,6 +203,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Connected Services\AW.Services.ProducMng\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShowCaseController.cs" />
@@ -216,6 +223,14 @@
     <Compile Include="Util\AutofacConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\AW.Services.ProducMng\ProductManager.wsdl" />
+    <None Include="Connected Services\AW.Services.ProducMng\ProductMng.disco" />
+    <None Include="Connected Services\AW.Services.ProducMng\configuration91.svcinfo" />
+    <None Include="Connected Services\AW.Services.ProducMng\configuration.svcinfo" />
+    <None Include="Connected Services\AW.Services.ProducMng\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -226,6 +241,17 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Connected Services\AW.Services.ProducMng\ProductMng.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.Services.ProducMng\ProductMng1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.Services.ProducMng\ProductMng2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.ProductDetailsDTO.datasource" />
+    <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.SCProductDTO.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -294,6 +320,12 @@
       <Project>{e7e5427e-8d8e-4479-a724-0c6b81cdc1dc}</Project>
       <Name>AdventureWorks.UnitOfWork</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AW.Services.ProducMng\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
