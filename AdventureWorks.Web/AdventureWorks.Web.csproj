@@ -203,7 +203,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Connected Services\AW.Services.ProducMng\Reference.cs">
+    <Compile Include="Connected Services\AW.AuthService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\AW.ProductService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -223,11 +228,33 @@
     <Compile Include="Util\AutofacConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AW.Services.ProducMng\ProductManager.wsdl" />
-    <None Include="Connected Services\AW.Services.ProducMng\ProductMng.disco" />
-    <None Include="Connected Services\AW.Services.ProducMng\configuration91.svcinfo" />
-    <None Include="Connected Services\AW.Services.ProducMng\configuration.svcinfo" />
-    <None Include="Connected Services\AW.Services.ProducMng\Reference.svcmap">
+    <None Include="Connected Services\AW.AuthService\AuthService.wsdl" />
+    <None Include="Connected Services\AW.AuthService\AuthService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.AuthService\AuthService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.AuthService\AuthService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.AuthService\AuthService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.AuthService\AuthService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.ProductService\ProductService.disco" />
+    <None Include="Connected Services\AW.ProductService\configuration91.svcinfo" />
+    <None Include="Connected Services\AW.ProductService\configuration.svcinfo" />
+    <None Include="Connected Services\AW.ProductService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\AW.AuthService\AuthService.disco" />
+    <None Include="Connected Services\AW.AuthService\configuration91.svcinfo" />
+    <None Include="Connected Services\AW.AuthService\configuration.svcinfo" />
+    <None Include="Connected Services\AW.AuthService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -241,17 +268,19 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Connected Services\AW.Services.ProducMng\ProductMng.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AW.Services.ProducMng\ProductMng1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AW.Services.ProducMng\ProductMng2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.ProductDetailsDTO.datasource" />
     <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.SCProductDTO.datasource" />
+    <Content Include="Properties\DataSources\AdventureWorks.BL.Infrastructure.OperationDetails.datasource" />
+    <None Include="Connected Services\AW.ProductService\ProductService.wsdl" />
+    <None Include="Connected Services\AW.ProductService\ProductService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.ProductService\ProductService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.ProductService\ProductService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -325,7 +354,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AW.Services.ProducMng\" />
+    <WCFMetadataStorage Include="Connected Services\AW.AuthService\" />
+    <WCFMetadataStorage Include="Connected Services\AW.ProductService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

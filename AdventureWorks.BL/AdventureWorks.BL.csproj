@@ -106,8 +106,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAuthManager.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
+    <Compile Include="Interfaces\IProductManager.cs" />
+    <Compile Include="Managers\AuthManager.cs" />
+    <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 ﻿using AdventureWorks.Auth.CustomIdentity;
 using AdventureWorks.BL.Interfaces;
-using AdventureWorks.BL.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;

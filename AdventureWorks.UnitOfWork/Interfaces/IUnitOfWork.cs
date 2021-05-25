@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdventureWorks.Auth.Identity;
+using AdventureWorks.Auth.IdentityManagers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

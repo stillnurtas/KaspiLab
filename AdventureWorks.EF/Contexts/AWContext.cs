@@ -37,6 +37,8 @@ namespace AdventureWorks.EF.Contexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Address>()
                 .HasMany(e => e.BusinessEntityAddress)
                 .WithRequired(e => e.Address)
@@ -215,9 +217,6 @@ namespace AdventureWorks.EF.Contexts
                 .HasMany(e => e.StateProvince)
                 .WithRequired(e => e.SalesTerritory)
                 .WillCascadeOnDelete(false);
-
-
-            base.OnModelCreating(modelBuilder);
         }
     }
 }

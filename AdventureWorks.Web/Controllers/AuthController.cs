@@ -1,7 +1,7 @@
 ﻿using AdventureWorks.BL.Infrastructure;
 using AdventureWorks.BL.Interfaces;
-using AdventureWorks.BL.Services;
 using AdventureWorks.DTO.Models.BL;
+using AdventureWorks.Web.AW.AuthService;
 using AdventureWorks.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -17,15 +17,9 @@ namespace AdventureWorks.Web.Controllers
 {
     public class AuthController : Controller
     {
-        private IAuthenticationManager _authMng;
-        private IAuthService _authSrc;
-        
-        public AuthController(IAuthService authService,
-                              IAuthenticationManager authenticationManager)
-        {
-            _authMng = authenticationManager;
-            _authSrc = authService;
-        }
+        private IAuthenticationManager AuthMng { get { return HttpContext.GetOwinContext().Authentication; } }
+
+
 
         public ActionResult Login()
         {
@@ -38,20 +32,23 @@ namespace AdventureWorks.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserDTO userDTO = new UserDTO { Email = model.Email, Password = model.Password };
-                ClaimsIdentity claim = await _authSrc.Authenticate(userDTO);
-                if(claim == null)
+                using (AuthServiceClient client = new AuthServiceClient())
                 {
-                    ModelState.AddModelError("", "Incorrect password or login");
-                }
-                else
-                {
-                    _authMng.SignOut();
-                    _authMng.SignIn(new AuthenticationProperties
+                    UserDTO userDTO = new UserDTO { Email = model.Email, Password = model.Password };
+                    ClaimsIdentity claim = await Task.Run(() => client.Authenticate(userDTO));
+                    if (claim == null)
                     {
-                        IsPersistent = true
-                    }, claim);
-                    return RedirectToAction("Index", "Home");
+                        ModelState.AddModelError("", "Incorrect password or login");
+                    }
+                    else
+                    {
+                        AuthMng.SignOut();
+                        AuthMng.SignIn(new AuthenticationProperties
+                        {
+                            IsPersistent = true
+                        }, claim);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
             return View(model);
@@ -63,21 +60,23 @@ namespace AdventureWorks.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserDTO userDTO = new UserDTO
+                using(AuthServiceClient client = new AuthServiceClient())
                 {
-                    Email = model.Email,
-                    Password = model.Password,
-                    Role = "customer"
-                };
-
-                OperationDetails operationDetails = await _authSrc.Register(userDTO);
-                if(operationDetails.Status == OperationDetails.Statuses.Success)
-                {
-                    return View("Success");
-                }
-                else
-                {
-                    ModelState.AddModelError(operationDetails.Status.ToString(), operationDetails.Message);
+                    UserDTO userDTO = new UserDTO
+                    {
+                        Email = model.Email,
+                        Password = model.Password,
+                        Role = "customer"
+                    };
+                    OperationDetails operationDetails = await Task.Run(() => client.Register(userDTO));
+                    if (operationDetails.Status == OperationDetails.Statuses.Success)
+                    {
+                        return View("Success");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(operationDetails.Status.ToString(), operationDetails.Message);
+                    }
                 }
             }
 
@@ -91,7 +90,7 @@ namespace AdventureWorks.Web.Controllers
 
         public ActionResult Logout()
         {
-            _authMng.SignOut();
+            AuthMng.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

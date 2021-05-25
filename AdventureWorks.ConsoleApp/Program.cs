@@ -15,8 +15,7 @@ using AdventureWorks.Auth.Identity;
 using AdventureWorks.Auth.CustomIdentity;
 using AdventureWorks.Auth.IdentityManagers;
 using Microsoft.AspNet.Identity;
-using AdventureWorks.BL.Services;
-using AdventureWorks.ConsoleApp.AW.ProductMng;
+using AdventureWorks.ConsoleApp.ProductService;
 
 namespace AdventureWorks.ConsoleApp
 {
@@ -24,23 +23,18 @@ namespace AdventureWorks.ConsoleApp
     {
         static void Main(string[] args)
         {
-            using (ProductManagerClient client = new ProductManagerClient())
+            using (ProductServiceClient client = new ProductServiceClient())
             {
+                var t = client.GetProducts(1, 24);
             }
         }
 
-        //static async Task Test()
-        //{
-        //    try
-        //    {
-        //        AuthService service = new AuthService();
-        //        var t = new UserDTO { Email = "nurtas2@mail.ru", UserName = "nurtas2@mail.ru", Password = "123456", Role = "admin" };
-        //        var res = await service.Register(t);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //    }
-        //}
+        static async Task Test()
+        {
+            using (AWUnitOfWork uow = new AWUnitOfWork(new AWContext()))
+            {
+                var r = await uow.Product.GetShowCaseProducts(1,24);
+            }
+        }
     }
 }

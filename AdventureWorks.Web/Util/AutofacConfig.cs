@@ -1,5 +1,4 @@
 ﻿using AdventureWorks.BL.Interfaces;
-using AdventureWorks.BL.Services;
 using AdventureWorks.EF.Contexts;
 using AdventureWorks.Repository.Interfaces;
 using AdventureWorks.Repository.UnitOfWork;
@@ -27,13 +26,13 @@ namespace AdventureWorks.Web.Util
 
             #region RegisterTypes
 
-            builder.RegisterType<ProductService>().As<IProductService>();
-            builder.RegisterType<AWUnitOfWork>().As<IUnitOfWork>()
-                                                .WithParameter("context", new AWContext());
-            builder.RegisterType<CacheManager>().As<ICacheManager>()
-                                                .WithParameter("cache", new MemoryCache(new MemoryCacheOptions()))
-                                                .SingleInstance();
-            builder.RegisterType<AuthService>().As<IAuthService>().InstancePerRequest();
+            //builder.RegisterType<ProductService>().As<IProductService>();
+            //builder.RegisterType<AWUnitOfWork>().As<IUnitOfWork>()
+            //                                    .WithParameter("context", new AWContext());
+            //builder.RegisterType<CacheManager>().As<ICacheManager>()
+            //                                    .WithParameter("cache", new MemoryCache(new MemoryCacheOptions()))
+            //                                    .SingleInstance();
+            //builder.RegisterType<AuthService>().As<IAuthService>().InstancePerRequest();
             //builder.RegisterType<IAuthService>().AsSelf().InstancePerRequest();
             //builder.RegisterType<AppUserManager>().AsSelf().InstancePerRequest();
             builder.Register(r => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();

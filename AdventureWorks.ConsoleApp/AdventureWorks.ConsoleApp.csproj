@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\AW.ProductMng\Reference.cs">
+    <Compile Include="Connected Services\ProductService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -74,14 +74,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\AW.ProductMng\ProductManager.wsdl" />
-    <None Include="Connected Services\AW.ProductMng\ProductMng.xsd">
+    <None Include="Connected Services\ProductService\ProductService.wsdl" />
+    <None Include="Connected Services\ProductService\ProductService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AW.ProductMng\ProductMng1.xsd">
+    <None Include="Connected Services\ProductService\ProductService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AW.ProductMng\ProductMng2.xsd">
+    <None Include="Connected Services\ProductService\ProductService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -118,19 +118,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AW.ProductMng\" />
+    <WCFMetadataStorage Include="Connected Services\ProductService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AW.ProductMng\ProductMng.disco" />
+    <None Include="Connected Services\ProductService\ProductService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AW.ProductMng\configuration91.svcinfo" />
+    <None Include="Connected Services\ProductService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AW.ProductMng\configuration.svcinfo" />
+    <None Include="Connected Services\ProductService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AW.ProductMng\Reference.svcmap">
+    <None Include="Connected Services\ProductService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -38,8 +38,6 @@ namespace AdventureWorks.Repository.UnitOfWork
             ProductListPriceHistory = new ProductListPriceHistoryRepository(context);
             ProductPhoto = new ProductPhotoRepository(context);
             ProductProductPhoto = new ProductProductPhotoRepository(context);
-            AppUserManager = new AppUserManager(new AppUserStore(context));
-            AppRoleManager = new AppRoleManager(new AppRoleStore(context));
         }
 
         #region repos property
@@ -78,8 +76,6 @@ namespace AdventureWorks.Repository.UnitOfWork
         public IProductPhotoRepository ProductPhoto { get; private set; }
 
         public IProductProductPhotoRepository ProductProductPhoto { get; private set; }
-        public AppUserManager AppUserManager { get; private set; }
-        public AppRoleManager AppRoleManager { get; private set; }
         #endregion
 
         public void Dispose()

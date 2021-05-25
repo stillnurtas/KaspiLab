@@ -9,7 +9,7 @@ namespace AdventureWorks.EF.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(AdventureWorks.EF.Contexts.AWContext context)

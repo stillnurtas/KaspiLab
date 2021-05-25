@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.BL.Infrastructure
 {
+    [Serializable]
     public class OperationDetails
     {
         public Statuses Status { get; private set; }
