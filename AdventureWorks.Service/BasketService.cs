@@ -1,4 +1,6 @@
-﻿using AdventureWorks.IService;
+﻿using AdventureWorks.BL.Interfaces;
+using AdventureWorks.DTO.Models.BL;
+using AdventureWorks.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +11,26 @@ namespace AdventureWorks.Service
 {
     public class BasketService : IBasketService
     {
-        public Task AddProductIntoBasket(string basketId, int productId, int quantity = 1)
+        private readonly IBasketManager basketMng;
+
+        public async Task AddProduct(string basketId, int productId, int quantity = 1)
         {
-            throw new NotImplementedException();
+            await basketMng.AddProduct(basketId, productId, quantity);
         }
 
-        public Task AddProductIntoSession()
+        public async Task ClearBasket(string basketId)
         {
-            throw new NotImplementedException();
+            await basketMng.ClearBasket(basketId);
         }
 
-        public Task ClearBasketAsync(string basketId)
+        public async Task<BasketDTO> GetBasketItems(string basketId)
         {
-            throw new NotImplementedException();
+            return await basketMng.GetBasketItems(basketId);
         }
 
-        public Task RemoveProductFromBasket(string basketId, int productId, int quantity = 1)
+        public async Task RemoveProduct(string basketId, int productId, int quantity = 1)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveProductFromSession()
-        {
-            throw new NotImplementedException();
+            await basketMng.RemoveProduct(basketId, productId, quantity);
         }
     }
 }

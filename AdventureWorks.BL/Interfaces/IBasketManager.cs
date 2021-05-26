@@ -2,25 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventureWorks.IService
+namespace AdventureWorks.BL.Interfaces
 {
-    [ServiceContract]
-    public interface IBasketService
+    public interface IBasketManager
     {
-        [OperationContract]
         Task AddProduct(string basketId, int productId, int quantity = 1);
-
-        [OperationContract]
         Task RemoveProduct(string basketId, int productId, int quantity = 1);
-
-        [OperationContract]
         Task ClearBasket(string basketId);
-
-        [OperationContract]
         Task<BasketDTO> GetBasketItems(string basketId);
     }
 }

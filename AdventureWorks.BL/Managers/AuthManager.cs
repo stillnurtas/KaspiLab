@@ -42,7 +42,7 @@ namespace AdventureWorks.BL.Managers
                 AppUser user = await _userMng.FindByEmailAsync(userDto.Email);
                 if (user == null)
                 {
-                    user = new AppUser { UserName = userDto.Email, Email = userDto.Email };
+                    user = new AppUser { UserName = userDto.Email, Email = userDto.Email, Id=1 };
                     var result = await _userMng.CreateAsync(user, userDto.Password);
                     if (result.Errors.Count() > 0)
                         return new OperationDetails(OperationDetails.Statuses.Error, result.Errors.FirstOrDefault(), "");

@@ -71,7 +71,7 @@ namespace AdventureWorks.Web.Controllers
                     OperationDetails operationDetails = await Task.Run(() => client.Register(userDTO));
                     if (operationDetails.Status == OperationDetails.Statuses.Success)
                     {
-                        return View("Success");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
