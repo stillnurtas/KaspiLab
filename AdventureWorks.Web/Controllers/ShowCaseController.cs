@@ -17,14 +17,14 @@ namespace AdventureWorks.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var model = new List<SCProductsViewModel>();
-            using (var serviceClient = new ProductServiceClient())
-            {
-                var scProductsBL = await Task.Run(() => serviceClient.GetProducts(1, 24));
-                scProductsBL.ToList().ForEach(p => model.Add(new SCProductsViewModel() { Id = p.Id, Name = p.Name }));
-            }
+            //var model = new List<SCProductsViewModel>();
+            //using (var serviceClient = new ProductServiceClient())
+            //{
+            //    var scProductsBL = await Task.Run(() => serviceClient.GetProducts(1, 24));
+            //    scProductsBL.ToList().ForEach(p => model.Add(new SCProductsViewModel() { Id = p.Id, Name = p.Name }));
+            //}
 
-            return View(model);
+            return View();
         }
 
         public async Task<ActionResult> GetImage(int productId)

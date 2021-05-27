@@ -10,6 +10,7 @@
         margin-left: auto;
         margin-right: auto;
         width: 50%;
+        min-height: 17vh;
     }
 </style>
 
@@ -17,23 +18,26 @@
 
 @section scripts{
     <script type="text/javascript">
-        var currentIndex = 1;
+        var currentIndex = 0;
 
         $(document).ready(function () {
-            var products = @Html.Raw(Json.Encode(Model));
-            CreateShowCase(products, 4);
+            @*var products = @Html.Raw(Json.Encode(Model));
+            CreateShowCase(products, 4);*@
+            productAjax();
         });
-
+        function productAjax() {
+            $.ajax({
+                url: "/ShowCase/GetProducts/",
+                data: { currentIndex: currentIndex + 1 },
+                success: function (data) {
+                    currentIndex++;
+                    CreateShowCase(data);
+                }
+            })
+        }
         $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-                $.ajax({
-                    url: "/ShowCase/GetProducts/",
-                    data: { currentIndex: currentIndex + 1 },
-                    success: function (data) {
-                        currentIndex++;
-                        CreateShowCase(data);
-                    }
-                })
+                productAjax();
             }
         });
 

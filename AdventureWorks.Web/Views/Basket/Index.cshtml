@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin-top: 2vh; margin-right: 1vw;">
+    <div class="col-md-7" style="border: 1px solid #e3e2e7; border-radius: 4px; margin-right: 1vw; margin-bottom: 1vh;">
+        <h3>Basket</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bike</td>
+                    <td>3</td>
+                    <td>150$</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2"><button class="btn btn-success glyphicon glyphicon-plus"></button></div>
+                            <div class="col-md-2"><button class="btn btn-danger glyphicon glyphicon-minus"></button></div>
+                            <div class="col-md-2"><button class="btn btn-default glyphicon glyphicon-trash"></button></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4" style="border: 1px solid #e3e2e7; border-radius: 4px">
+        <h3>Amount to pay</h3>
+        <div class="row">
+            <div class="col-md-6">To Pay:</div>
+            <div class="col-md-6">1000</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 1vh;">
+                <button class="btn btn-primary">Place an order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
