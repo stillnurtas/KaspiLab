@@ -16,10 +16,10 @@ namespace AdventureWorks.ConsoleApp.ProductService {
     public interface IProductService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetProducts", ReplyAction="http://tempuri.org/IProductService/GetProductsResponse")]
-        AdventureWorks.DTO.Models.BL.SCProductDTO[] GetProducts(int pageIndex, int pageSize);
+        AdventureWorks.DTO.Models.BL.BasketProduct[] GetProducts(int pageIndex, int pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetProducts", ReplyAction="http://tempuri.org/IProductService/GetProductsResponse")]
-        System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.SCProductDTO[]> GetProductsAsync(int pageIndex, int pageSize);
+        System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.BasketProduct[]> GetProductsAsync(int pageIndex, int pageSize);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetDetails", ReplyAction="http://tempuri.org/IProductService/GetDetailsResponse")]
         AdventureWorks.DTO.Models.BL.ProductDetailsDTO GetDetails(int productId);
@@ -61,11 +61,11 @@ namespace AdventureWorks.ConsoleApp.ProductService {
                 base(binding, remoteAddress) {
         }
         
-        public AdventureWorks.DTO.Models.BL.SCProductDTO[] GetProducts(int pageIndex, int pageSize) {
+        public AdventureWorks.DTO.Models.BL.BasketProduct[] GetProducts(int pageIndex, int pageSize) {
             return base.Channel.GetProducts(pageIndex, pageSize);
         }
         
-        public System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.SCProductDTO[]> GetProductsAsync(int pageIndex, int pageSize) {
+        public System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.BasketProduct[]> GetProductsAsync(int pageIndex, int pageSize) {
             return base.Channel.GetProductsAsync(pageIndex, pageSize);
         }
         

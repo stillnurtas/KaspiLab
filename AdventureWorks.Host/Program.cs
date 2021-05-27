@@ -36,6 +36,7 @@ namespace AdventureWorks.Host
         {
             RegisterHost(typeof(ProductService));
             RegisterHost(typeof(AuthService));
+            RegisterHost(typeof(BasketService));
         }
 
         static void Stop()

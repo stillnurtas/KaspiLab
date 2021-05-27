@@ -24,6 +24,11 @@ namespace AdventureWorks.Repository.Repositories
             _context.Set<E>().Add(item);
         }
 
+        public void CreateRange(IEnumerable<E> items)
+        {
+            _context.Set<E>().AddRange(items);
+        }
+
         public void Update(E item)
         {
             _context.Entry(_context.Set<E>()).State = EntityState.Modified;
@@ -32,6 +37,11 @@ namespace AdventureWorks.Repository.Repositories
         public void Delete(E item)
         {
             _context.Set<E>().Remove(item);
+        }
+
+        public void DeleteRange(IEnumerable<E> item)
+        {
+            _context.Set<E>().RemoveRange(item);
         }
 
         public async Task<E> Get(int id)

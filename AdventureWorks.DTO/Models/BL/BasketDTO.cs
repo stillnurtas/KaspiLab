@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventureWorks.EF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,6 @@ namespace AdventureWorks.DTO.Models.BL
 {
     public class BasketDTO
     {
-        public string BasketId { get; set; }
-        public List<SCProductDTO> Items { get; set; }
+        public Dictionary<string, ShoppingCartItem> Items { get; set; }
     }
 }

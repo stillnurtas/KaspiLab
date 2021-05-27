@@ -9,5 +9,7 @@ namespace AdventureWorks.Repository.Interfaces
 {
     public interface IShoppingCartItemRepository : IRepository<ShoppingCartItem>
     {
+        int GetMaxCartId();
+        Task<List<ShoppingCartItem>> GetBasketItems(string basketId);
     }
 }

@@ -208,6 +208,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\AW.BasketService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\AW.ProductService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +250,22 @@
     <None Include="Connected Services\AW.AuthService\AuthService4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\AW.BasketService\BasketService.wsdl" />
+    <None Include="Connected Services\AW.BasketService\BasketService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.BasketService\BasketService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.BasketService\BasketService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.BasketService\BasketService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AW.BasketService\BasketService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\AW.ProductService\ProductService.disco" />
     <None Include="Connected Services\AW.ProductService\configuration91.svcinfo" />
     <None Include="Connected Services\AW.ProductService\configuration.svcinfo" />
@@ -256,6 +277,13 @@
     <None Include="Connected Services\AW.AuthService\configuration91.svcinfo" />
     <None Include="Connected Services\AW.AuthService\configuration.svcinfo" />
     <None Include="Connected Services\AW.AuthService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\AW.BasketService\BasketService.disco" />
+    <None Include="Connected Services\AW.BasketService\configuration91.svcinfo" />
+    <None Include="Connected Services\AW.BasketService\configuration.svcinfo" />
+    <None Include="Connected Services\AW.BasketService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -282,6 +310,7 @@
     <None Include="Connected Services\AW.ProductService\ProductService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.BasketDTO.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -357,6 +386,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\AW.AuthService\" />
+    <WCFMetadataStorage Include="Connected Services\AW.BasketService\" />
     <WCFMetadataStorage Include="Connected Services\AW.ProductService\" />
   </ItemGroup>
   <PropertyGroup>

@@ -14,6 +14,8 @@ namespace AdventureWorks.Repository.Interfaces
         Task<IEnumerable<E>> GetList(Expression<Func<E, bool>> predicate);
         void Update(E item);
         void Create(E item);
+        void CreateRange(IEnumerable<E> items);
         void Delete(E item);
+        void DeleteRange(IEnumerable<E> items);
     }
 }

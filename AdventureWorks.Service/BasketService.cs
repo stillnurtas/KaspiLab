@@ -1,4 +1,5 @@
 ﻿using AdventureWorks.BL.Interfaces;
+using AdventureWorks.BL.Managers;
 using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.IService;
 using System;
@@ -12,6 +13,11 @@ namespace AdventureWorks.Service
     public class BasketService : IBasketService
     {
         private readonly IBasketManager basketMng;
+
+        public BasketService()
+        {
+            basketMng = new BasketManager();
+        }
 
         public async Task AddProduct(string basketId, int productId, int quantity = 1)
         {
