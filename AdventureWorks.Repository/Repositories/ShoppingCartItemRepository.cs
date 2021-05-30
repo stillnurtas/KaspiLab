@@ -16,13 +16,13 @@ namespace AdventureWorks.Repository.Repositories
         public ShoppingCartItemRepository(AWContext context) : base(context) { }
         public AWContext AWContext { get { return _context as AWContext; } }
 
-        public int GetMaxCartId()
+        public async Task<int> GetMaxCartId()
         {
-            return AWContext.ShoppingCartItem
-                            .Select(s => Convert.ToInt32(s.ShoppingCartID))
+            var list = await AWContext.ShoppingCartItem
+                            .Select(s => s.ShoppingCartID)
                             .Distinct()
-                            .ToList()
-                            .Max();
+                            .ToListAsync();
+            return list.Max(m => Convert.ToInt32(m));
         }
 
         public async Task<List<ShoppingCartItem>> GetBasketItems(string basketId)

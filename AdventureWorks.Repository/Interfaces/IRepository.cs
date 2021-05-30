@@ -10,6 +10,7 @@ namespace AdventureWorks.Repository.Interfaces
     public interface IRepository<E> where E : class
     {
         Task<E> Get(int id);
+        Task<E> Get(Expression<Func<E, bool>> predicate);
         Task<IEnumerable<E>> GetAll();
         Task<IEnumerable<E>> GetList(Expression<Func<E, bool>> predicate);
         void Update(E item);

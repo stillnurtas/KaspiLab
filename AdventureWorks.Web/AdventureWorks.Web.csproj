@@ -250,6 +250,13 @@
     <None Include="Connected Services\AW.AuthService\AuthService4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\AW.AuthService\AuthService.disco" />
+    <None Include="Connected Services\AW.AuthService\configuration91.svcinfo" />
+    <None Include="Connected Services\AW.AuthService\configuration.svcinfo" />
+    <None Include="Connected Services\AW.AuthService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Connected Services\AW.BasketService\BasketService.wsdl" />
     <None Include="Connected Services\AW.BasketService\BasketService.xsd">
       <SubType>Designer</SubType>
@@ -266,17 +273,13 @@
     <None Include="Connected Services\AW.BasketService\BasketService4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\AW.BasketService\BasketService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\AW.ProductService\ProductService.disco" />
     <None Include="Connected Services\AW.ProductService\configuration91.svcinfo" />
     <None Include="Connected Services\AW.ProductService\configuration.svcinfo" />
     <None Include="Connected Services\AW.ProductService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\AW.AuthService\AuthService.disco" />
-    <None Include="Connected Services\AW.AuthService\configuration91.svcinfo" />
-    <None Include="Connected Services\AW.AuthService\configuration.svcinfo" />
-    <None Include="Connected Services\AW.AuthService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -300,6 +303,7 @@
     <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.ProductDetailsDTO.datasource" />
     <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.SCProductDTO.datasource" />
     <Content Include="Properties\DataSources\AdventureWorks.BL.Infrastructure.OperationDetails.datasource" />
+    <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.BasketDTO.datasource" />
     <None Include="Connected Services\AW.ProductService\ProductService.wsdl" />
     <None Include="Connected Services\AW.ProductService\ProductService.xsd">
       <SubType>Designer</SubType>
@@ -310,7 +314,9 @@
     <None Include="Connected Services\AW.ProductService\ProductService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.BasketDTO.datasource" />
+    <None Include="Connected Services\AW.ProductService\ProductService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

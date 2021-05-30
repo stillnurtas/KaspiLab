@@ -1,4 +1,5 @@
-﻿using AdventureWorks.BL.Interfaces;
+﻿using AdventureWorks.BL.Infrastructure.Enums;
+using AdventureWorks.BL.Interfaces;
 using AdventureWorks.BL.Managers;
 using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.EF.Contexts;
@@ -27,9 +28,9 @@ namespace AdventureWorks.Service
             return details;
         }
 
-        public async Task<byte[]> GetImage(int productId)
+        public async Task<byte[]> GetImage(int productId, ImageType type)
         {
-            var imageData = await _productMng.GetImage(productId);
+            var imageData = await _productMng.GetImage(productId, type);
             return imageData;
         }
 

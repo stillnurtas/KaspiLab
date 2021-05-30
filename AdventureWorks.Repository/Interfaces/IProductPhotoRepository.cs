@@ -9,5 +9,7 @@ namespace AdventureWorks.Repository.Interfaces
 {
     public interface IProductPhotoRepository : IRepository<ProductPhoto>
     {
+        Task<byte[]> GetNailImage(int productId);
+        Task<byte[]> GetLargeImage(int productId);
     }
 }

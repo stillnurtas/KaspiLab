@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:8080/ProductService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/ProductService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/ProductService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" />
+      <xsd:import schemaLocation="http://localhost:8080/ProductService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AdventureWorks.BL.Infrastructure.Enums" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IProductService_GetProducts_InputMessage">

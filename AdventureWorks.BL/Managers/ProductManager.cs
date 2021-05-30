@@ -1,4 +1,5 @@
-﻿using AdventureWorks.BL.Interfaces;
+﻿using AdventureWorks.BL.Infrastructure.Enums;
+using AdventureWorks.BL.Interfaces;
 using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.EF.Contexts;
 using AdventureWorks.Repository.UnitOfWork;
@@ -27,11 +28,21 @@ namespace AdventureWorks.BL.Managers
             }
         }
 
-        public async Task<byte[]> GetImage(int productId)
+        public async Task<byte[]> GetImage(int productId, ImageType type)
         {
             using (_uow)
             {
-                var imageData = await _uow.Product.GetImage(productId);
+                byte[] imageData = null;
+                switch (type)
+                {
+                    case ImageType.Nail:
+                        imageData = await _uow.ProductPhoto.GetNailImage(productId);
+                        break;
+                    case ImageType.Large:
+                        imageData = await _uow.ProductPhoto.GetLargeImage(productId);
+                        break;
+                }
+
                 return imageData;
             }
         }

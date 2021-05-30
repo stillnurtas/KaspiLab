@@ -15,7 +15,7 @@ namespace AdventureWorks.Repository.Repositories
     {
         public ProductRepository(AWContext context) : base(context) { }
 
-        public AWContext AWContext { get { return _context as AWContext; } }
+        private AWContext AWContext { get { return _context as AWContext; } }
 
         public async Task<ProductDetailsDTO> GetDetails(int productId)
         {
@@ -27,14 +27,6 @@ namespace AdventureWorks.Repository.Repositories
                                 Price = p.ProductListPriceHistory.Select(plph => plph.ListPrice).FirstOrDefault(),
                                 Quantity = p.ProductInventory.Select(pi => pi.Quantity).FirstOrDefault()
                             })
-                            .FirstOrDefaultAsync();
-        }
-
-        public async Task<byte[]> GetImage(int productId)
-        {
-            return await AWContext.ProductProductPhoto
-                            .Where(ppp => ppp.ProductID == productId)
-                            .Select(ppp => ppp.ProductPhoto.LargePhoto)
                             .FirstOrDefaultAsync();
         }
 

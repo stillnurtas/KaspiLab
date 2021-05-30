@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8080/ProductService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" />
+  <xs:import schemaLocation="http://localhost:8080/ProductService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AdventureWorks.BL.Infrastructure.Enums" />
   <xs:element name="GetProducts">
     <xs:complexType>
       <xs:sequence>
@@ -34,6 +35,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="productId" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AdventureWorks.BL.Infrastructure.Enums" minOccurs="0" name="type" type="q3:ImageType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

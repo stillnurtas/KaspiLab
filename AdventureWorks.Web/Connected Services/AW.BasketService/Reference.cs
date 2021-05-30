@@ -16,28 +16,34 @@ namespace AdventureWorks.Web.AW.BasketService {
     public interface IBasketService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/AddProduct", ReplyAction="http://tempuri.org/IBasketService/AddProductResponse")]
-        void AddProduct(string basketId, int productId, int quantity);
+        AdventureWorks.BL.Infrastructure.OperationDetails AddProduct(string basketId, int productId, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/AddProduct", ReplyAction="http://tempuri.org/IBasketService/AddProductResponse")]
-        System.Threading.Tasks.Task AddProductAsync(string basketId, int productId, int quantity);
+        System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> AddProductAsync(string basketId, int productId, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/RemoveProduct", ReplyAction="http://tempuri.org/IBasketService/RemoveProductResponse")]
-        void RemoveProduct(string basketId, int productId, int quantity);
+        AdventureWorks.BL.Infrastructure.OperationDetails RemoveProduct(string basketId, int productId, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/RemoveProduct", ReplyAction="http://tempuri.org/IBasketService/RemoveProductResponse")]
-        System.Threading.Tasks.Task RemoveProductAsync(string basketId, int productId, int quantity);
+        System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> RemoveProductAsync(string basketId, int productId, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/ClearBasket", ReplyAction="http://tempuri.org/IBasketService/ClearBasketResponse")]
-        void ClearBasket(string basketId);
+        AdventureWorks.BL.Infrastructure.OperationDetails ClearBasket(string basketId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/ClearBasket", ReplyAction="http://tempuri.org/IBasketService/ClearBasketResponse")]
-        System.Threading.Tasks.Task ClearBasketAsync(string basketId);
+        System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> ClearBasketAsync(string basketId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/GetBasketItems", ReplyAction="http://tempuri.org/IBasketService/GetBasketItemsResponse")]
         AdventureWorks.DTO.Models.BL.BasketDTO GetBasketItems(string basketId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/GetBasketItems", ReplyAction="http://tempuri.org/IBasketService/GetBasketItemsResponse")]
         System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.BasketDTO> GetBasketItemsAsync(string basketId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/GenerateBasketId", ReplyAction="http://tempuri.org/IBasketService/GenerateBasketIdResponse")]
+        string GenerateBasketId();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBasketService/GenerateBasketId", ReplyAction="http://tempuri.org/IBasketService/GenerateBasketIdResponse")]
+        System.Threading.Tasks.Task<string> GenerateBasketIdAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -67,27 +73,27 @@ namespace AdventureWorks.Web.AW.BasketService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddProduct(string basketId, int productId, int quantity) {
-            base.Channel.AddProduct(basketId, productId, quantity);
+        public AdventureWorks.BL.Infrastructure.OperationDetails AddProduct(string basketId, int productId, int quantity) {
+            return base.Channel.AddProduct(basketId, productId, quantity);
         }
         
-        public System.Threading.Tasks.Task AddProductAsync(string basketId, int productId, int quantity) {
+        public System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> AddProductAsync(string basketId, int productId, int quantity) {
             return base.Channel.AddProductAsync(basketId, productId, quantity);
         }
         
-        public void RemoveProduct(string basketId, int productId, int quantity) {
-            base.Channel.RemoveProduct(basketId, productId, quantity);
+        public AdventureWorks.BL.Infrastructure.OperationDetails RemoveProduct(string basketId, int productId, int quantity) {
+            return base.Channel.RemoveProduct(basketId, productId, quantity);
         }
         
-        public System.Threading.Tasks.Task RemoveProductAsync(string basketId, int productId, int quantity) {
+        public System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> RemoveProductAsync(string basketId, int productId, int quantity) {
             return base.Channel.RemoveProductAsync(basketId, productId, quantity);
         }
         
-        public void ClearBasket(string basketId) {
-            base.Channel.ClearBasket(basketId);
+        public AdventureWorks.BL.Infrastructure.OperationDetails ClearBasket(string basketId) {
+            return base.Channel.ClearBasket(basketId);
         }
         
-        public System.Threading.Tasks.Task ClearBasketAsync(string basketId) {
+        public System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> ClearBasketAsync(string basketId) {
             return base.Channel.ClearBasketAsync(basketId);
         }
         
@@ -97,6 +103,14 @@ namespace AdventureWorks.Web.AW.BasketService {
         
         public System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.BasketDTO> GetBasketItemsAsync(string basketId) {
             return base.Channel.GetBasketItemsAsync(basketId);
+        }
+        
+        public string GenerateBasketId() {
+            return base.Channel.GenerateBasketId();
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateBasketIdAsync() {
+            return base.Channel.GenerateBasketIdAsync();
         }
     }
 }

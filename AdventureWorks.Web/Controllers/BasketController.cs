@@ -1,6 +1,9 @@
-﻿using System;
+﻿using AdventureWorks.BL.Infrastructure;
+using AdventureWorks.Web.AW.BasketService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,9 +16,26 @@ namespace AdventureWorks.Web.Controllers
             return View();
         }
 
-        public ActionResult AddProduct()
+        public async Task<ActionResult> AddProduct(int productId, int quantity = 1)
         {
-            return Json(JsonRequestBehavior.AllowGet);
+            OperationDetails result;
+            using(BasketServiceClient client = new BasketServiceClient())
+            {
+                string basketId;
+                if ((string)Session["BasketID"] == null)
+                {
+                    basketId = await Task.Run(() => client.GenerateBasketId());
+                    Session["BasketID"] = basketId;
+                }
+                else
+                {
+                    basketId = (string)Session["BasketID"];
+                }
+
+                result = await Task.Run(() => client.AddProduct(basketId, productId, quantity));
+            }
+
+            return Json(result.Status.ToString(), JsonRequestBehavior.AllowGet);
         }
     }
 }

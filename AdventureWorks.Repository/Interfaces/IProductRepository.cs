@@ -11,7 +11,6 @@ namespace AdventureWorks.Repository.Interfaces
     public interface IProductRepository : IRepository<Product>
     {
         Task<IEnumerable<SCProductDTO>> GetShowCaseProducts(int pageIndex, int pageSize);
-        Task<byte[]> GetImage(int productId);
         Task<ProductDetailsDTO> GetDetails(int productId);
     }
 }

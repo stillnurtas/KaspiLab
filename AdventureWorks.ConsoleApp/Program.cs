@@ -15,8 +15,6 @@ using AdventureWorks.Auth.Identity;
 using AdventureWorks.Auth.CustomIdentity;
 using AdventureWorks.Auth.IdentityManagers;
 using Microsoft.AspNet.Identity;
-using AdventureWorks.ConsoleApp.ProductService;
-using AdventureWorks.ConsoleApp.ServiceReference1;
 
 namespace AdventureWorks.ConsoleApp
 {
@@ -33,17 +31,7 @@ namespace AdventureWorks.ConsoleApp
         {
             using (AWUnitOfWork uow = new AWUnitOfWork(new AWContext()))
             {
-
-                uow.ShoppingCartItem.Create(new ShoppingCartItem
-                {
-                    ShoppingCartID = "51451",
-                    Quantity = 1,
-                    ProductID = 2,
-                    DateCreated = DateTime.Now,
-                    ModifiedDate = DateTime.Now
-                });
-
-                var t = await uow.Save();
+                var t = await uow.ShoppingCartItem.GetMaxCartId();
             }
         }
     }

@@ -28,10 +28,10 @@ namespace AdventureWorks.Web.AW.ProductService {
         System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.ProductDetailsDTO> GetDetailsAsync(int productId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetImage", ReplyAction="http://tempuri.org/IProductService/GetImageResponse")]
-        byte[] GetImage(int productId);
+        byte[] GetImage(int productId, AdventureWorks.BL.Infrastructure.Enums.ImageType type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/GetImage", ReplyAction="http://tempuri.org/IProductService/GetImageResponse")]
-        System.Threading.Tasks.Task<byte[]> GetImageAsync(int productId);
+        System.Threading.Tasks.Task<byte[]> GetImageAsync(int productId, AdventureWorks.BL.Infrastructure.Enums.ImageType type);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -77,12 +77,12 @@ namespace AdventureWorks.Web.AW.ProductService {
             return base.Channel.GetDetailsAsync(productId);
         }
         
-        public byte[] GetImage(int productId) {
-            return base.Channel.GetImage(productId);
+        public byte[] GetImage(int productId, AdventureWorks.BL.Infrastructure.Enums.ImageType type) {
+            return base.Channel.GetImage(productId, type);
         }
         
-        public System.Threading.Tasks.Task<byte[]> GetImageAsync(int productId) {
-            return base.Channel.GetImageAsync(productId);
+        public System.Threading.Tasks.Task<byte[]> GetImageAsync(int productId, AdventureWorks.BL.Infrastructure.Enums.ImageType type) {
+            return base.Channel.GetImageAsync(productId, type);
         }
     }
 }

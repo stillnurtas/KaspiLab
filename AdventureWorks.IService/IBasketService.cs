@@ -1,4 +1,5 @@
-﻿using AdventureWorks.DTO.Models.BL;
+﻿using AdventureWorks.BL.Infrastructure;
+using AdventureWorks.DTO.Models.BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,18 @@ namespace AdventureWorks.IService
     public interface IBasketService
     {
         [OperationContract]
-        Task AddProduct(string basketId, int productId, int quantity = 1);
+        Task<OperationDetails> AddProduct(string basketId, int productId, int quantity = 1);
 
         [OperationContract]
-        Task RemoveProduct(string basketId, int productId, int quantity = 1);
+        Task<OperationDetails> RemoveProduct(string basketId, int productId, int quantity = 1);
 
         [OperationContract]
-        Task ClearBasket(string basketId);
+        Task<OperationDetails> ClearBasket(string basketId);
 
         [OperationContract]
         Task<BasketDTO> GetBasketItems(string basketId);
+
+        [OperationContract]
+        Task<string> GenerateBasketId();
     }
 }

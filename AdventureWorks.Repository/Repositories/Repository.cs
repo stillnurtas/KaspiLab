@@ -49,6 +49,11 @@ namespace AdventureWorks.Repository.Repositories
             return await _context.Set<E>().FindAsync(id);
         }
 
+        public async Task<E> Get(Expression<Func<E, bool>> predicate)
+        {
+            return await _context.Set<E>().Where(predicate).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<E>> GetAll()
         {
             return await _context.Set<E>().ToListAsync();
