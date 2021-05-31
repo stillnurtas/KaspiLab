@@ -7,6 +7,7 @@ namespace AdventureWorks.EF.Models
     using System.Data.Entity.Spatial;
 
     [Table("Sales.ShoppingCartItem")]
+    [Serializable]
     public partial class ShoppingCartItem
     {
         public int ShoppingCartItemID { get; set; }

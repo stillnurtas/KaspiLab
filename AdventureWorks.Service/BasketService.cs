@@ -37,7 +37,8 @@ namespace AdventureWorks.Service
 
         public async Task<BasketDTO> GetBasketItems(string basketId)
         {
-            return await basketMng.GetBasketItems(basketId);
+            var items = await basketMng.GetBasketItems(basketId);
+            return items;
         }
 
         public async Task<OperationDetails> RemoveProduct(string basketId, int productId, int quantity = 1)

@@ -1,4 +1,5 @@
 ﻿using AdventureWorks.BL.Infrastructure;
+using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.Web.AW.BasketService;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,8 @@ namespace AdventureWorks.Web.Controllers
         public async Task<ActionResult> AddProduct(int productId, int quantity = 1)
         {
             OperationDetails result;
-            using(BasketServiceClient client = new BasketServiceClient())
+
+            using (BasketServiceClient client = new BasketServiceClient())
             {
                 string basketId;
                 if ((string)Session["BasketID"] == null)
@@ -33,8 +35,14 @@ namespace AdventureWorks.Web.Controllers
                 }
 
                 result = await Task.Run(() => client.AddProduct(basketId, productId, quantity));
+                if(result.Status == OperationDetails.Statuses.Success)
+                {
+                    var basketDTO = await Task.Run(() => client.GetBasketItems(basketId));
+                    Session["BasketItems"] = basketDTO;
+                }
             }
-
+            var basketIdSession = (string)Session["BasketID"];
+            var basketItemSession = (BasketDTO)Session["BasketItems"];
             return Json(result.Status.ToString(), JsonRequestBehavior.AllowGet);
         }
     }
