@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<AdventureWorks.Web.Models.BasketViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -9,25 +9,31 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Bike</td>
-                    <td>3</td>
-                    <td>150$</td>
-                    <td>
-                        <div class="row">
-                            <div class="col-md-2"><button class="btn btn-success glyphicon glyphicon-plus"></button></div>
-                            <div class="col-md-2"><button class="btn btn-danger glyphicon glyphicon-minus"></button></div>
-                            <div class="col-md-2"><button class="btn btn-default glyphicon glyphicon-trash"></button></div>
-                        </div>
-                    </td>
-                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-2"><button id="plus" class="btn btn-success glyphicon glyphicon-plus" data-identifier="@item.ProductID"></button></div>
+                                    <div class="col-md-2"><button id="minus" class="btn btn-danger glyphicon glyphicon-minus" data-identifier="@item.ProductID"></button></div>
+                                    <div class="col-md-2"><button id="remove" class="btn btn-default glyphicon glyphicon-trash" data-identifier="@item.ProductID"></button></div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
@@ -35,7 +41,7 @@
         <h3>Amount to pay</h3>
         <div class="row">
             <div class="col-md-6">To Pay:</div>
-            <div class="col-md-6">1000</div>
+            <div class="col-md-6">@ViewBag.TotalPrice</div>
         </div>
         <br />
         <div class="row">
@@ -45,4 +51,10 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+
+    </script>
+}
 

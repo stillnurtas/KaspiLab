@@ -49,6 +49,7 @@
     <Compile Include="IProductService.cs" />
     <Compile Include="ISalesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCartItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventureWorks.Auth\AdventureWorks.Auth.csproj">
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\AdventureWorks.DTO\AdventureWorks.DTO.csproj">
       <Project>{dd15cbfd-df12-4e46-8209-406cce6b80a6}</Project>
       <Name>AdventureWorks.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdventureWorks.EF\AdventureWorks.EF.csproj">
+      <Project>{36347662-41d2-4b69-9922-47f24e7dcfad}</Project>
+      <Name>AdventureWorks.EF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

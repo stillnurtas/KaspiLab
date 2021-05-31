@@ -1,6 +1,7 @@
 ﻿using AdventureWorks.BL.Infrastructure;
 using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.Web.AW.BasketService;
+using AdventureWorks.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,20 @@ namespace AdventureWorks.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new List<BasketViewModel>();
+            var basketItems = (BasketDTO)Session["BasketItems"];
+            basketItems?.Basket.ForEach(b =>
+            {
+                model.Add(new BasketViewModel
+                {
+                    ProductID = b.ProductID,
+                    ProductName = b.ProductName,
+                    Price = b.Price,
+                    Quantity = b.Quantity
+                });
+            });
+            ViewBag.TotalPrice = basketItems?.TotalPrice;
+            return View(model);
         }
 
         public async Task<ActionResult> AddProduct(int productId, int quantity = 1)
@@ -37,12 +51,10 @@ namespace AdventureWorks.Web.Controllers
                 result = await Task.Run(() => client.AddProduct(basketId, productId, quantity));
                 if(result.Status == OperationDetails.Statuses.Success)
                 {
-                    var basketDTO = await Task.Run(() => client.GetBasketItems(basketId));
-                    Session["BasketItems"] = basketDTO;
+                    Session["BasketItems"] = await Task.Run(() => client.GetBasketItems(basketId));
                 }
             }
-            var basketIdSession = (string)Session["BasketID"];
-            var basketItemSession = (BasketDTO)Session["BasketItems"];
+
             return Json(result.Status.ToString(), JsonRequestBehavior.AllowGet);
         }
     }

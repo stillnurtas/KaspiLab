@@ -2,14 +2,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AdventureWorks.DTO.Models.BL
 {
-    [Serializable]
+    [DataContract]
     public class BasketDTO
     {
-        public Dictionary<string, ShoppingCartItem> Items { get; set; } = new Dictionary<string, ShoppingCartItem>();
+        [DataMember]
+        public decimal TotalPrice { get; set; }
+        [DataMember]
+        public List<ShoppingCartDTO> Basket { get; set; } = new List<ShoppingCartDTO>();
+    }
+
+    [DataContract]
+    public class ShoppingCartDTO
+    {
+        [DataMember]
+        public int ProductID { get; set; }
+        [DataMember]
+        public string ProductName { get; set; }
+        [DataMember]
+        public int Quantity { get; set; }
+        [DataMember]
+        public decimal Price { get; set; }
     }
 }

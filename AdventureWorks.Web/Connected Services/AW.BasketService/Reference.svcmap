@@ -25,10 +25,8 @@
     <MetadataFile FileName="BasketService.wsdl" MetadataType="Wsdl" ID="a50a720a-5b52-4b02-82bd-4efeb6b502f3" SourceId="1" SourceUrl="http://localhost:8080/BasketService?wsdl" />
     <MetadataFile FileName="BasketService.xsd" MetadataType="Schema" ID="8d16b1d3-34c4-4bae-8d33-083f832fab36" SourceId="1" SourceUrl="http://localhost:8080/BasketService?xsd=xsd0" />
     <MetadataFile FileName="BasketService.disco" MetadataType="Disco" ID="d7dd329e-5467-400d-9839-42a1a83c75b5" SourceId="1" SourceUrl="http://localhost:8080/BasketService?disco" />
-    <MetadataFile FileName="BasketService1.xsd" MetadataType="Schema" ID="814c6618-4024-45cd-a808-43741ecfb6fd" SourceId="1" SourceUrl="http://localhost:8080/BasketService?xsd=xsd4" />
     <MetadataFile FileName="BasketService2.xsd" MetadataType="Schema" ID="438a1894-594f-4cb0-88c0-86be13f3c718" SourceId="1" SourceUrl="http://localhost:8080/BasketService?xsd=xsd3" />
     <MetadataFile FileName="BasketService3.xsd" MetadataType="Schema" ID="78542fa5-4da3-4e32-80ca-ce1df8b348b0" SourceId="1" SourceUrl="http://localhost:8080/BasketService?xsd=xsd1" />
-    <MetadataFile FileName="BasketService4.xsd" MetadataType="Schema" ID="d8d8455a-243c-41a4-8f35-cdcf18e7a84d" SourceId="1" SourceUrl="http://localhost:8080/BasketService?xsd=xsd5" />
     <MetadataFile FileName="BasketService5.xsd" MetadataType="Schema" ID="bacb6942-5ed3-4c77-a548-c0e24ad5e17e" SourceId="1" SourceUrl="http://localhost:8080/BasketService?xsd=xsd2" />
   </Metadata>
   <Extensions>

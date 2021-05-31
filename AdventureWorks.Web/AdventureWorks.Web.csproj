@@ -227,6 +227,7 @@
     </Compile>
     <Compile Include="Models\Auth\LoginViewModel.cs" />
     <Compile Include="Models\Auth\RegisterViewModel.cs" />
+    <Compile Include="Models\BasketViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SCProductsViewModel.cs" />
@@ -261,16 +262,10 @@
     <None Include="Connected Services\AW.BasketService\BasketService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AW.BasketService\BasketService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\AW.BasketService\BasketService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\AW.BasketService\BasketService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AW.BasketService\BasketService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\AW.BasketService\BasketService5.xsd">

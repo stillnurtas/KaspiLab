@@ -94,16 +94,22 @@ namespace AdventureWorks.BL.Managers
         {
             var basket = new BasketDTO();
             var basketItems = await _uow.ShoppingCartItem.GetBasketItems(basketId);
-
             basketItems.ForEach(item => {
-                if (!basket.Items.Keys.Contains(item.Product.Name))
+                var product = basket.Basket.Find(f => f.ProductID == item.ProductID);
+                if (product == null)
                 {
-                    basket.Items.Add(item.Product.Name, item);
+                    basket.Basket.Add(new ShoppingCartDTO { ProductID = item.ProductID, 
+                                                            ProductName = item.Product.Name,
+                                                            Quantity = item.Quantity,
+                                                            Price = item.Product.StandardCost});
+                    basket.TotalPrice += item.Product.StandardCost;
                 }
                 else
                 {
-                    var dict = basket.Items.FirstOrDefault(i => i.Key == item.Product.Name);
-                    dict.Value.Quantity += item.Quantity;
+                    var existItem = basket.Basket.FirstOrDefault(i => i.ProductID == item.Product.ProductID);
+                    existItem.Quantity += item.Quantity;
+                    existItem.Price += item.Product.StandardCost;
+                    basket.TotalPrice += existItem.Price;
                 }
             });
 

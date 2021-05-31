@@ -7,7 +7,6 @@ namespace AdventureWorks.EF.Models
     using System.Data.Entity.Spatial;
 
     [Table("Sales.ShoppingCartItem")]
-    [Serializable]
     public partial class ShoppingCartItem
     {
         public int ShoppingCartItemID { get; set; }
@@ -15,15 +14,10 @@ namespace AdventureWorks.EF.Models
         [Required]
         [StringLength(50)]
         public string ShoppingCartID { get; set; }
-
         public int Quantity { get; set; }
-
         public int ProductID { get; set; }
-
         public DateTime DateCreated { get; set; }
-
         public DateTime ModifiedDate { get; set; }
-
         public virtual Product Product { get; set; }
     }
 }

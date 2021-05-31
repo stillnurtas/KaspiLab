@@ -2,6 +2,7 @@
 using AdventureWorks.BL.Interfaces;
 using AdventureWorks.BL.Managers;
 using AdventureWorks.DTO.Models.BL;
+using AdventureWorks.EF.Models;
 using AdventureWorks.IService;
 using System;
 using System.Collections.Generic;

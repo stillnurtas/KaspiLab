@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8080/BasketService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="BasketDTO">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_Items_x003E_k__BackingField" nillable="true" type="q1:ArrayOfKeyValueOfstringShoppingCartItemmDVPEiIr" />
+      <xs:element minOccurs="0" name="Basket" nillable="true" type="tns:ArrayOfShoppingCartDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BasketDTO" nillable="true" type="tns:BasketDTO" />
+  <xs:complexType name="ArrayOfShoppingCartDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ShoppingCartDTO" nillable="true" type="tns:ShoppingCartDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfShoppingCartDTO" nillable="true" type="tns:ArrayOfShoppingCartDTO" />
+  <xs:complexType name="ShoppingCartDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ShoppingCartDTO" nillable="true" type="tns:ShoppingCartDTO" />
 </xs:schema>

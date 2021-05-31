@@ -24,38 +24,7 @@ namespace AdventureWorks.ConsoleApp
 
         static void Main(string[] args)
         {
-            GetBasketItems("20621").GetAwaiter().GetResult();
-        }
-
-        public static async Task<BasketDTO> GetBasketItems(string basketId)
-        {
-            var basket = new BasketDTO();
-            using(AWUnitOfWork uow = new AWUnitOfWork(new AWContext()))
-            {
-                var basketItems = await uow.ShoppingCartItem.GetBasketItems(basketId);
-
-                try
-                {
-                    foreach (var item in basketItems)
-                    {
-                        if (!basket.Items.Keys.Contains(item.Product.Name))
-                        {
-                            basket.Items.Add(item.Product.Name, item);
-                        }
-                        else
-                        {
-                            var dict = basket.Items.FirstOrDefault(i => i.Key == item.Product.Name);
-                            dict.Value.Quantity += item.Quantity;
-                        }
-                    }
-                }
-                catch(Exception ex)
-                {
-
-                }
-            }
-
-            return basket;
+            //GetBasketItems("20621").GetAwaiter().GetResult();
         }
     }
 }

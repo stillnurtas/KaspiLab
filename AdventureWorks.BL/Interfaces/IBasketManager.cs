@@ -1,5 +1,6 @@
 ﻿using AdventureWorks.BL.Infrastructure;
 using AdventureWorks.DTO.Models.BL;
+using AdventureWorks.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
