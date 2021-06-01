@@ -12,7 +12,7 @@ namespace AdventureWorks.DTO.Models.BL
     public class BasketDTO
     {
         [DataMember]
-        public decimal TotalPrice { get; set; }
+        public decimal BasketPrice { get; set; }
         [DataMember]
         public List<ShoppingCartDTO> Basket { get; set; } = new List<ShoppingCartDTO>();
     }
@@ -27,6 +27,8 @@ namespace AdventureWorks.DTO.Models.BL
         [DataMember]
         public int Quantity { get; set; }
         [DataMember]
-        public decimal Price { get; set; }
+        public decimal ProductPrice { get; set; }
+        [DataMember]
+        public decimal TotalPrice { get; set; }
     }
 }

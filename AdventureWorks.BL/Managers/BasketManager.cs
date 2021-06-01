@@ -1,4 +1,5 @@
-﻿using AdventureWorks.BL.Infrastructure;
+﻿using AdventureWorks.BL.Helpers;
+using AdventureWorks.BL.Infrastructure;
 using AdventureWorks.BL.Interfaces;
 using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.EF.Contexts;
@@ -30,22 +31,26 @@ namespace AdventureWorks.BL.Managers
                 if (product == null)
                 {
                     var lastCartId = await _uow.ShoppingCartItem.GetMaxCartId();
-                    _uow.ShoppingCartItem.Create(new ShoppingCartItem
+                    product = new ShoppingCartItem
                     {
                         ShoppingCartID = basketId,
                         Quantity = quantity,
                         ProductID = productId,
                         DateCreated = DateTime.Now,
                         ModifiedDate = DateTime.Now
-                    });
+                    };
+                    _uow.ShoppingCartItem.Create(product);
 
-                    await _uow.Save();
+                    if (!await BasketHelper.ProductAvailability(product, _uow))
+                    {
+                        return new OperationDetails(OperationDetails.Statuses.Error, "Not enought quantity", "AddProduct");
+                    }
                 }
                 else
                 {
                     product.Quantity += quantity;
-                    await _uow.Save();
                 }
+                await _uow.Save();
 
                 return new OperationDetails(OperationDetails.Statuses.Success, "Success operation", "AddProduct");
             }
@@ -62,11 +67,21 @@ namespace AdventureWorks.BL.Managers
                 var product = await _uow.ShoppingCartItem.GetList(l => l.ShoppingCartID == basketId && l.ProductID == productId);
                 if (product != null)
                 {
-                    product.FirstOrDefault().Quantity -= quantity;
+                    if(product.FirstOrDefault().Quantity == quantity)
+                    {
+                        _uow.ShoppingCartItem.Delete(product.FirstOrDefault());
+                    }
+                    else
+                    {
+                        product.FirstOrDefault().Quantity -= quantity;
+                    }
+
                     await _uow.Save();
+
+                    return new OperationDetails(OperationDetails.Statuses.Success, "Success operation", "RemoveProduct");
                 }
 
-                return new OperationDetails(OperationDetails.Statuses.Success, "Success operation", "RemoveProduct");
+                return new OperationDetails(OperationDetails.Statuses.Error, $"This product is not in basket", "RemoveProduct");
             }
             catch(Exception ex)
             {
@@ -95,22 +110,13 @@ namespace AdventureWorks.BL.Managers
             var basket = new BasketDTO();
             var basketItems = await _uow.ShoppingCartItem.GetBasketItems(basketId);
             basketItems.ForEach(item => {
-                var product = basket.Basket.Find(f => f.ProductID == item.ProductID);
-                if (product == null)
-                {
-                    basket.Basket.Add(new ShoppingCartDTO { ProductID = item.ProductID, 
-                                                            ProductName = item.Product.Name,
-                                                            Quantity = item.Quantity,
-                                                            Price = item.Product.StandardCost});
-                    basket.TotalPrice += item.Product.StandardCost;
-                }
-                else
-                {
-                    var existItem = basket.Basket.FirstOrDefault(i => i.ProductID == item.Product.ProductID);
-                    existItem.Quantity += item.Quantity;
-                    existItem.Price += item.Product.StandardCost;
-                    basket.TotalPrice += existItem.Price;
-                }
+                basket.Basket.Add(new ShoppingCartDTO { ProductID = item.ProductID,
+                                                        ProductName = item.Product.Name,
+                                                        Quantity = item.Quantity,
+                                                        ProductPrice = item.Product.StandardCost,
+                                                        TotalPrice = item.Product.StandardCost * item.Quantity
+                });
+                basket.BasketPrice += item.Product.StandardCost * item.Quantity;
             });
 
             return basket;

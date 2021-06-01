@@ -15,5 +15,7 @@ namespace AdventureWorks.Web.Models
         public int Quantity { get; set; }
         [DisplayName("Price")]
         public decimal Price { get; set; }
+        [DisplayName("Total")]
+        public decimal TotalPrice { get; set; }
     }
 }

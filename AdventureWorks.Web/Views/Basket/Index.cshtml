@@ -1,10 +1,12 @@
-﻿@model IEnumerable<AdventureWorks.Web.Models.BasketViewModel>
+﻿@using Microsoft.AspNet.Identity
+
+@model IEnumerable<AdventureWorks.Web.Models.BasketViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
 <div class="row" style="margin-top: 2vh; margin-right: 1vw;">
-    <div class="col-md-7" style="border: 1px solid #e3e2e7; border-radius: 4px; margin-right: 1vw; margin-bottom: 1vh;">
+    <div class="col-md-8" style="border: 1px solid #e3e2e7; border-radius: 4px; margin-right: 1vw; margin-bottom: 1vh;">
         <h3>Basket</h3>
         <table class="table">
             <thead>
@@ -12,6 +14,7 @@
                     <th>@Html.DisplayNameFor(model => model.ProductName)</th>
                     <th>@Html.DisplayNameFor(model => model.Quantity)</th>
                     <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,6 +27,7 @@
                             <td>@item.ProductName</td>
                             <td id="quantity-@item.ProductID">@item.Quantity</td>
                             <td id="price-@item.ProductID">@item.Price</td>
+                            <td id="total-price-@item.ProductID">@item.TotalPrice</td>
                             <td>
                                 <div class="row">
                                     <div class="col-md-2"><button id="plus" class="btn btn-success glyphicon glyphicon-plus" data-identifier="@item.ProductID"></button></div>
@@ -37,16 +41,16 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-4" style="border: 1px solid #e3e2e7; border-radius: 4px">
+    <div class="col-md-3" style="border: 1px solid #e3e2e7; border-radius: 4px">
         <h3>Amount to pay</h3>
         <div class="row">
             <div class="col-md-6">To Pay:</div>
-            <div class="col-md-6" id="totalPrice">@ViewBag.TotalPrice</div>
+            <div class="col-md-6" id="basketPrice">@ViewBag.TotalPrice</div>
         </div>
         <br />
         <div class="row">
             <div class="col-md-12" style="margin-bottom: 1vh;">
-                <button class="btn btn-primary">Place an order</button>
+                <button class="btn btn-primary" id="placeOrder">Place an order</button>
             </div>
         </div>
     </div>
@@ -57,30 +61,76 @@
 
         $(document).on("click", "#plus", function () {
             let id = $(this).attr("data-identifier");
-            QuantityUpdate(id, "plus");
-            PriceUpdate(id);
+            $.ajax({
+                url: "/Basket/AddProduct/",
+                data: { productId: id },
+                type: "POST",
+                success: () => {
+                    PriceUpdate(id, "plus");
+                    QuantityUpdate(id, "plus");
+                }
+            });
         });
 
         $(document).on("click", "#minus", function () {
             let id = $(this).attr("data-identifier");
-            QuantityUpdate(id, "minus");
+            let currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
+            if (parseInt(currQuantity) > 1) {
+                $.ajax({
+                    url: "/Basket/RemoveProduct/",
+                    data: { productId: id },
+                    type: "POST",
+                    success: () => {
+                        PriceUpdate(id, "minus");
+                        QuantityUpdate(id, "minus");
+                    }
+                });
+            }
         });
 
         $(document).on("click", "#remove", function () {
             let id = $(this).attr("data-identifier");
+            let currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
+            $.ajax({
+                url: "/Basket/RemoveProduct/",
+                data: { productId: id, quantity: currQuantity },
+                type: "POST",
+                success: () => {
+                    PriceUpdate(id, "remove");
+                    $(this).closest("tr").remove();
+                }
+            });
+        });
+
+        $(document).on("click", "#placeOrder", function () {
+            if ($("tbody").children().length !== 0) {
+                
+            }
         });
 
         let QuantityUpdate = (id, opType) => {
-            var currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
+            let currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
             currQuantity = opType === "plus" ? parseInt(currQuantity) + 1 : parseInt(currQuantity) !== 1 ? parseInt(currQuantity) - 1 : parseInt(currQuantity);
             $(".table").find(`td[id=quantity-${id}]`).text(currQuantity);
         }
 
-        let PriceUpdate = (id) => {
-            alert("IN");
-            var currPrice = $(".table").find(`td[id=price-${id}]`).text();
-            var currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
-            currPrice = parseInt(currPrice) + (parseInt(currPrice) / parseInt(currQuantity));
+        let PriceUpdate = (id, opType) => {
+            let currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
+            let prodPrice = $(".table").find(`td[id=price-${id}]`).text();
+            let totalPrice = $(".table").find(`td[id=total-price-${id}]`).text();
+            let basketPrice = $("#basketPrice").text();
+
+            if (opType === "plus") {
+                $(".table").find(`td[id=total-price-${id}]`).text(parseFloat(totalPrice) + parseFloat(prodPrice));
+                $("#basketPrice").text(parseFloat(basketPrice) + parseFloat(prodPrice));
+            }
+            else if (parseInt(currQuantity) !== 1 && opType === "minus") {
+                $(".table").find(`td[id=total-price-${id}]`).text(parseFloat(totalPrice) - parseFloat(prodPrice));
+                $("#basketPrice").text(parseFloat(basketPrice) - parseFloat(prodPrice));
+            }
+            else if (opType === "remove") {
+                $("#basketPrice").text(parseFloat(basketPrice) - (parseFloat(prodPrice) * currQuantity));
+            }
         }
 
     </script>

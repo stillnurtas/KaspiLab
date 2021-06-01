@@ -123,6 +123,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\BasketHelper.cs" />
     <Compile Include="Infrastructure\Enums\ImageType.cs" />
     <Compile Include="Interfaces\IAuthManager.cs" />
     <Compile Include="Interfaces\IBasketManager.cs" />
