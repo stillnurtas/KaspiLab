@@ -18,13 +18,13 @@
 
 @section scripts{
     <script type="text/javascript">
-        var currentIndex = 0;
+        let currentIndex = 0;
 
         $(document).ready(function () {
             productAjax();
         });
 
-        function productAjax() {
+        let productAjax = () => {
             $.ajax({
                 url: "/ShowCase/GetProducts/",
                 data: { currentIndex: currentIndex + 1 },
@@ -41,12 +41,12 @@
         });
 
         $(document).on("click", "#details", function () {
-            var productId = $(this).closest("div").attr('data-id');
+            let productId = $(this).closest("div").attr('data-id');
             document.location = `/ShowCase/GetDetails/?productId=${productId}`;
         });
 
         $(document).on("click", "#addToBasket", function () {
-            var productId = $(this).closest("div").attr('data-id');
+            let productId = $(this).closest("div").attr('data-id');
             $.ajax({
                 url: "/Basket/AddProduct/",
                 data: { productId: productId },
@@ -57,12 +57,12 @@
             });
         });
 
-        function CreateShowCase(products, rowCount) {
-            var counter = 0;
-            var res = "";
-            var blocks = "";
+        let CreateShowCase = (products, rowCount) => {
+            let counter = 0;
+            let res = "";
+            let blocks = "";
 
-            for (var i = 0; i < products.length; i++) {
+            for (let i = 0; i < products.length; i++) {
                 blocks += `<div class="col-md-3" style="margin-top: 3vh;">
                                 <div style="border: 1px solid #e3e2e7; border-radius: 4px">
                                     <div>

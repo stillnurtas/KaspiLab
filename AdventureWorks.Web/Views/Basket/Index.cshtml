@@ -22,8 +22,8 @@
                     {
                         <tr>
                             <td>@item.ProductName</td>
-                            <td>@item.Quantity</td>
-                            <td>@item.Price</td>
+                            <td id="quantity-@item.ProductID">@item.Quantity</td>
+                            <td id="price-@item.ProductID">@item.Price</td>
                             <td>
                                 <div class="row">
                                     <div class="col-md-2"><button id="plus" class="btn btn-success glyphicon glyphicon-plus" data-identifier="@item.ProductID"></button></div>
@@ -41,7 +41,7 @@
         <h3>Amount to pay</h3>
         <div class="row">
             <div class="col-md-6">To Pay:</div>
-            <div class="col-md-6">@ViewBag.TotalPrice</div>
+            <div class="col-md-6" id="totalPrice">@ViewBag.TotalPrice</div>
         </div>
         <br />
         <div class="row">
@@ -54,6 +54,34 @@
 
 @section scripts{
     <script type="text/javascript">
+
+        $(document).on("click", "#plus", function () {
+            let id = $(this).attr("data-identifier");
+            QuantityUpdate(id, "plus");
+            PriceUpdate(id);
+        });
+
+        $(document).on("click", "#minus", function () {
+            let id = $(this).attr("data-identifier");
+            QuantityUpdate(id, "minus");
+        });
+
+        $(document).on("click", "#remove", function () {
+            let id = $(this).attr("data-identifier");
+        });
+
+        let QuantityUpdate = (id, opType) => {
+            var currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
+            currQuantity = opType === "plus" ? parseInt(currQuantity) + 1 : parseInt(currQuantity) !== 1 ? parseInt(currQuantity) - 1 : parseInt(currQuantity);
+            $(".table").find(`td[id=quantity-${id}]`).text(currQuantity);
+        }
+
+        let PriceUpdate = (id) => {
+            alert("IN");
+            var currPrice = $(".table").find(`td[id=price-${id}]`).text();
+            var currQuantity = $(".table").find(`td[id=quantity-${id}]`).text();
+            currPrice = parseInt(currPrice) + (parseInt(currPrice) / parseInt(currQuantity));
+        }
 
     </script>
 }
