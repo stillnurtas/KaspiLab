@@ -32,7 +32,12 @@ namespace AdventureWorks.Service
             return claim;
         }
 
-        public async Task<OperationDetails> Register(UserDTO userDto)
+        public Task<RegisInfoDTO> GetRegisInfo()
+        {
+            return _authMng.GetRegisInfo();
+        }
+
+        public async Task<OperationDetails> Register(RegisDTO userDto)
         {
             var opDetail = await _authMng.Register(userDto);
             return opDetail;

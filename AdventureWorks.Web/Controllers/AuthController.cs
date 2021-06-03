@@ -62,13 +62,18 @@ namespace AdventureWorks.Web.Controllers
             {
                 using(AuthServiceClient client = new AuthServiceClient())
                 {
-                    UserDTO userDTO = new UserDTO
+                    RegisDTO regisDTO = new RegisDTO
                     {
                         Email = model.Email,
                         Password = model.Password,
-                        Role = "customer"
+                        Role = "customer",
+                        Address = model.Address,
+                        City = model.City,
+                        PostalCode = model.PostalCode,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
                     };
-                    OperationDetails operationDetails = await Task.Run(() => client.Register(userDTO));
+                    OperationDetails operationDetails = await Task.Run(() => client.Register(regisDTO));
                     if (operationDetails.Status == OperationDetails.Statuses.Success)
                     {
                         return RedirectToAction("Index", "Home");
@@ -85,7 +90,13 @@ namespace AdventureWorks.Web.Controllers
 
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel();
+            using (AuthServiceClient client = new AuthServiceClient())
+            {
+                var res = client.GetRegisInfo();
+                res.Provinces.ForEach(p => model.States.Add(new SelectListItem { Text = p.Name, Value = Convert.ToString(p.Id) }));
+            }
+            return View(model);
         }
 
         public ActionResult Logout()

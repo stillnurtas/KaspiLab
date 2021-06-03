@@ -16,6 +16,7 @@ namespace AdventureWorks.EF.Models
             Customer = new HashSet<Customer>();
             SalesOrderHeader = new HashSet<SalesOrderHeader>();
             SalesPerson = new HashSet<SalesPerson>();
+            SalesTerritoryHistory = new HashSet<SalesTerritoryHistory>();
         }
 
         [Key]
@@ -49,6 +50,8 @@ namespace AdventureWorks.EF.Models
 
         public DateTime ModifiedDate { get; set; }
 
+        public virtual CountryRegion CountryRegion { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StateProvince> StateProvince { get; set; }
 
@@ -60,5 +63,8 @@ namespace AdventureWorks.EF.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesPerson> SalesPerson { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesTerritoryHistory> SalesTerritoryHistory { get; set; }
     }
 }

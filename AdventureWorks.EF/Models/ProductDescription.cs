@@ -9,6 +9,12 @@ namespace AdventureWorks.EF.Models
     [Table("Production.ProductDescription")]
     public partial class ProductDescription
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductDescription()
+        {
+            ProductModelProductDescriptionCulture = new HashSet<ProductModelProductDescriptionCulture>();
+        }
+
         public int ProductDescriptionID { get; set; }
 
         [Required]
@@ -18,5 +24,8 @@ namespace AdventureWorks.EF.Models
         public Guid rowguid { get; set; }
 
         public DateTime ModifiedDate { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductModelProductDescriptionCulture> ProductModelProductDescriptionCulture { get; set; }
     }
 }

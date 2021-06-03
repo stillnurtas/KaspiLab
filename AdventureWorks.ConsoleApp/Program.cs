@@ -20,11 +20,18 @@ namespace AdventureWorks.ConsoleApp
 {
     class Program
     {
-        public static AWContext AWContext { get; private set; }
 
         static void Main(string[] args)
         {
-            //GetBasketItems("20621").GetAwaiter().GetResult();
+            Test().GetAwaiter().GetResult();
+        }
+
+        static async Task Test()
+        {
+            using (var uow = new AWContext())
+            {
+                var s = uow.Person.ToList();
+            }
         }
     }
 }

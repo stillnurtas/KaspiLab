@@ -29,6 +29,7 @@ namespace AdventureWorks.Repository.Interfaces
         IProductListPriceHistoryRepository ProductListPriceHistory { get; }
         IProductPhotoRepository ProductPhoto { get; }
         IProductProductPhotoRepository ProductProductPhoto { get; }
+        IPersonRepository Person { get; }
         #endregion
 
         Task<int> Save();

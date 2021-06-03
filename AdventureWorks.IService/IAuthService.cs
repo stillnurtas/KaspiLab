@@ -14,9 +14,12 @@ namespace AdventureWorks.IService
     public interface IAuthService
     {
         [OperationContract]
-        Task<OperationDetails> Register(UserDTO userDto);
+        Task<OperationDetails> Register(RegisDTO userDto);
 
         [OperationContract]
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
+
+        [OperationContract]
+        Task<RegisInfoDTO> GetRegisInfo();
     }
 }

@@ -31,6 +31,8 @@ namespace AdventureWorks.EF.Models
 
         public DateTime ModifiedDate { get; set; }
 
+        public virtual Location Location { get; set; }
+
         public virtual Product Product { get; set; }
     }
 }

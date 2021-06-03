@@ -13,6 +13,7 @@ namespace AdventureWorks.EF.Models
         public SalesOrderHeader()
         {
             SalesOrderDetail = new HashSet<SalesOrderDetail>();
+            SalesOrderHeaderSalesReason = new HashSet<SalesOrderHeaderSalesReason>();
         }
 
         [Key]
@@ -84,6 +85,12 @@ namespace AdventureWorks.EF.Models
 
         public virtual Address Address1 { get; set; }
 
+        public virtual ShipMethod ShipMethod { get; set; }
+
+        public virtual CreditCard CreditCard { get; set; }
+
+        public virtual CurrencyRate CurrencyRate { get; set; }
+
         public virtual Customer Customer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -92,5 +99,8 @@ namespace AdventureWorks.EF.Models
         public virtual SalesPerson SalesPerson { get; set; }
 
         public virtual SalesTerritory SalesTerritory { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesOrderHeaderSalesReason> SalesOrderHeaderSalesReason { get; set; }
     }
 }

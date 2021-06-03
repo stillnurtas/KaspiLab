@@ -12,7 +12,7 @@ namespace AdventureWorks.Auth.CustomIdentity
 {
     public class AppRoleStore : RoleStore<AppRole, int, AppUserRole>, IAppRoleStore
     {
-        public AppRoleStore() : base(new AWContext()) { }
-        public AppRoleStore(AWContext context) : base(context) { }
+        public AppRoleStore() : base(new AWContext_old()) { }
+        public AppRoleStore(AWContext_old context) : base(context) { }
     }
 }

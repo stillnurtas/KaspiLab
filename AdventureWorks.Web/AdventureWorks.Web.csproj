@@ -313,6 +313,7 @@
     <None Include="Connected Services\AW.ProductService\ProductService3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\AdventureWorks.DTO.Models.BL.RegisInfoDTO.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

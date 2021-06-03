@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IBusinessEntityRepository.cs" />
     <Compile Include="Interfaces\ICustomerRepository.cs" />
     <Compile Include="Interfaces\IPersonPhoneRepository.cs" />
+    <Compile Include="Interfaces\IPersonRepository.cs" />
     <Compile Include="Interfaces\IProductCategoryRepository.cs" />
     <Compile Include="Interfaces\IProductDescriptionRepository.cs" />
     <Compile Include="Interfaces\IProductInventoryRepository.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Repositories\BusinessEntityRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\PersonPhoneRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Repositories\ProductDescriptionRepository.cs" />
     <Compile Include="Repositories\ProductInventoryRepository.cs" />

@@ -12,10 +12,19 @@ namespace AdventureWorks.EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
+            BillOfMaterials = new HashSet<BillOfMaterials>();
+            BillOfMaterials1 = new HashSet<BillOfMaterials>();
+            ProductCostHistory = new HashSet<ProductCostHistory>();
             ProductInventory = new HashSet<ProductInventory>();
             ProductListPriceHistory = new HashSet<ProductListPriceHistory>();
             ProductProductPhoto = new HashSet<ProductProductPhoto>();
+            ProductReview = new HashSet<ProductReview>();
+            ProductVendor = new HashSet<ProductVendor>();
+            PurchaseOrderDetail = new HashSet<PurchaseOrderDetail>();
             ShoppingCartItem = new HashSet<ShoppingCartItem>();
+            SpecialOfferProduct = new HashSet<SpecialOfferProduct>();
+            TransactionHistory = new HashSet<TransactionHistory>();
+            WorkOrder = new HashSet<WorkOrder>();
         }
 
         public int ProductID { get; set; }
@@ -82,6 +91,25 @@ namespace AdventureWorks.EF.Models
         public DateTime ModifiedDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillOfMaterials> BillOfMaterials { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillOfMaterials> BillOfMaterials1 { get; set; }
+
+        public virtual ProductModel ProductModel { get; set; }
+
+        public virtual ProductSubcategory ProductSubcategory { get; set; }
+
+        public virtual UnitMeasure UnitMeasure { get; set; }
+
+        public virtual UnitMeasure UnitMeasure1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductCostHistory> ProductCostHistory { get; set; }
+
+        public virtual ProductDocument ProductDocument { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductInventory> ProductInventory { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -91,6 +119,24 @@ namespace AdventureWorks.EF.Models
         public virtual ICollection<ProductProductPhoto> ProductProductPhoto { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductReview> ProductReview { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductVendor> ProductVendor { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetail { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCartItem> ShoppingCartItem { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SpecialOfferProduct> SpecialOfferProduct { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionHistory> TransactionHistory { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkOrder> WorkOrder { get; set; }
     }
 }

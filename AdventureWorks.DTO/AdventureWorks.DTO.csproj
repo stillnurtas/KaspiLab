@@ -45,6 +45,8 @@
     <Compile Include="Models\BL\BasketDTO.cs" />
     <Compile Include="Models\BL\OrderDTO.cs" />
     <Compile Include="Models\BL\ProductDetailsDTO.cs" />
+    <Compile Include="Models\BL\RegisInfoDTO.cs" />
+    <Compile Include="Models\BL\RegisDTO.cs" />
     <Compile Include="Models\BL\SCProductDTO.cs" />
     <Compile Include="Models\BL\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,6 +13,7 @@ namespace AdventureWorks.EF.Models
         public StateProvince()
         {
             Address = new HashSet<Address>();
+            SalesTaxRate = new HashSet<SalesTaxRate>();
         }
 
         public int StateProvinceID { get; set; }
@@ -39,6 +40,11 @@ namespace AdventureWorks.EF.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Address { get; set; }
+
+        public virtual CountryRegion CountryRegion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesTaxRate> SalesTaxRate { get; set; }
 
         public virtual SalesTerritory SalesTerritory { get; set; }
     }

@@ -11,7 +11,8 @@ namespace AdventureWorks.BL.Interfaces
 {
     public interface IAuthManager
     {
-        Task<OperationDetails> Register(UserDTO userDto);
+        Task<OperationDetails> Register(RegisDTO userDto);
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
+        Task<RegisInfoDTO> GetRegisInfo();
     }
 }

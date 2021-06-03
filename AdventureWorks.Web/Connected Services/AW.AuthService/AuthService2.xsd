@@ -6,7 +6,7 @@
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" minOccurs="0" name="userDto" nillable="true" type="q1:UserDTO" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" minOccurs="0" name="userDto" nillable="true" type="q1:RegisDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -28,6 +28,18 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System.Security.Claims" minOccurs="0" name="AuthenticateResult" nillable="true" type="q4:ClaimsIdentity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRegisInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRegisInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AdventureWorks.DTO.Models.BL" minOccurs="0" name="GetRegisInfoResult" nillable="true" type="q5:RegisInfoDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

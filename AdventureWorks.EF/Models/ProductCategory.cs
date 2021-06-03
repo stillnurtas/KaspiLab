@@ -9,6 +9,12 @@ namespace AdventureWorks.EF.Models
     [Table("Production.ProductCategory")]
     public partial class ProductCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductCategory()
+        {
+            ProductSubcategory = new HashSet<ProductSubcategory>();
+        }
+
         public int ProductCategoryID { get; set; }
 
         [Required]
@@ -18,5 +24,8 @@ namespace AdventureWorks.EF.Models
         public Guid rowguid { get; set; }
 
         public DateTime ModifiedDate { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductSubcategory> ProductSubcategory { get; set; }
     }
 }

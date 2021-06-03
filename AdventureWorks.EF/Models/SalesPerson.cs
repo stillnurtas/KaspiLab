@@ -13,6 +13,9 @@ namespace AdventureWorks.EF.Models
         public SalesPerson()
         {
             SalesOrderHeader = new HashSet<SalesOrderHeader>();
+            SalesPersonQuotaHistory = new HashSet<SalesPersonQuotaHistory>();
+            SalesTerritoryHistory = new HashSet<SalesTerritoryHistory>();
+            Store = new HashSet<Store>();
         }
 
         [Key]
@@ -40,9 +43,20 @@ namespace AdventureWorks.EF.Models
 
         public DateTime ModifiedDate { get; set; }
 
+        public virtual Employee Employee { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrderHeader> SalesOrderHeader { get; set; }
 
         public virtual SalesTerritory SalesTerritory { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesPersonQuotaHistory> SalesPersonQuotaHistory { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesTerritoryHistory> SalesTerritoryHistory { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Store> Store { get; set; }
     }
 }

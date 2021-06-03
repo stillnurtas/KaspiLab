@@ -16,19 +16,29 @@ namespace AdventureWorks.Web.AW.AuthService {
     public interface IAuthService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthService/Register", ReplyAction="http://tempuri.org/IAuthService/RegisterResponse")]
-        AdventureWorks.BL.Infrastructure.OperationDetails Register(AdventureWorks.DTO.Models.BL.UserDTO userDto);
+        AdventureWorks.BL.Infrastructure.OperationDetails Register(AdventureWorks.DTO.Models.BL.RegisDTO userDto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthService/Register", ReplyAction="http://tempuri.org/IAuthService/RegisterResponse")]
-        System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> RegisterAsync(AdventureWorks.DTO.Models.BL.UserDTO userDto);
+        System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> RegisterAsync(AdventureWorks.DTO.Models.BL.RegisDTO userDto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthService/Authenticate", ReplyAction="http://tempuri.org/IAuthService/AuthenticateResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.DTO.Models.BL.RegisDTO))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.DTO.Models.BL.UserDTO))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.DTO.Models.BL.RegisInfoDTO))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.DTO.Models.BL.Province[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.DTO.Models.BL.Province))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.BL.Infrastructure.OperationDetails))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AdventureWorks.BL.Infrastructure.OperationDetails.Statuses))]
         System.Security.Claims.ClaimsIdentity Authenticate(AdventureWorks.DTO.Models.BL.UserDTO userDto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthService/Authenticate", ReplyAction="http://tempuri.org/IAuthService/AuthenticateResponse")]
         System.Threading.Tasks.Task<System.Security.Claims.ClaimsIdentity> AuthenticateAsync(AdventureWorks.DTO.Models.BL.UserDTO userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthService/GetRegisInfo", ReplyAction="http://tempuri.org/IAuthService/GetRegisInfoResponse")]
+        AdventureWorks.DTO.Models.BL.RegisInfoDTO GetRegisInfo();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthService/GetRegisInfo", ReplyAction="http://tempuri.org/IAuthService/GetRegisInfoResponse")]
+        System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.RegisInfoDTO> GetRegisInfoAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -58,11 +68,11 @@ namespace AdventureWorks.Web.AW.AuthService {
                 base(binding, remoteAddress) {
         }
         
-        public AdventureWorks.BL.Infrastructure.OperationDetails Register(AdventureWorks.DTO.Models.BL.UserDTO userDto) {
+        public AdventureWorks.BL.Infrastructure.OperationDetails Register(AdventureWorks.DTO.Models.BL.RegisDTO userDto) {
             return base.Channel.Register(userDto);
         }
         
-        public System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> RegisterAsync(AdventureWorks.DTO.Models.BL.UserDTO userDto) {
+        public System.Threading.Tasks.Task<AdventureWorks.BL.Infrastructure.OperationDetails> RegisterAsync(AdventureWorks.DTO.Models.BL.RegisDTO userDto) {
             return base.Channel.RegisterAsync(userDto);
         }
         
@@ -72,6 +82,14 @@ namespace AdventureWorks.Web.AW.AuthService {
         
         public System.Threading.Tasks.Task<System.Security.Claims.ClaimsIdentity> AuthenticateAsync(AdventureWorks.DTO.Models.BL.UserDTO userDto) {
             return base.Channel.AuthenticateAsync(userDto);
+        }
+        
+        public AdventureWorks.DTO.Models.BL.RegisInfoDTO GetRegisInfo() {
+            return base.Channel.GetRegisInfo();
+        }
+        
+        public System.Threading.Tasks.Task<AdventureWorks.DTO.Models.BL.RegisInfoDTO> GetRegisInfoAsync() {
+            return base.Channel.GetRegisInfoAsync();
         }
     }
 }

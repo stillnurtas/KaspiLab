@@ -14,10 +14,15 @@ namespace AdventureWorks.EF.Models
         [Required]
         [StringLength(50)]
         public string ShoppingCartID { get; set; }
+
         public int Quantity { get; set; }
+
         public int ProductID { get; set; }
+
         public DateTime DateCreated { get; set; }
+
         public DateTime ModifiedDate { get; set; }
+
         public virtual Product Product { get; set; }
     }
 }

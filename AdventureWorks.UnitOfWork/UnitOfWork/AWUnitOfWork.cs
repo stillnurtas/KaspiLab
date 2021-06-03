@@ -38,6 +38,7 @@ namespace AdventureWorks.Repository.UnitOfWork
             ProductListPriceHistory = new ProductListPriceHistoryRepository(context);
             ProductPhoto = new ProductPhotoRepository(context);
             ProductProductPhoto = new ProductProductPhotoRepository(context);
+            Person = new PersonRepository(context);
         }
 
         #region repos property
@@ -76,6 +77,7 @@ namespace AdventureWorks.Repository.UnitOfWork
         public IProductPhotoRepository ProductPhoto { get; private set; }
 
         public IProductProductPhotoRepository ProductProductPhoto { get; private set; }
+        public IPersonRepository Person { get; private set; }
         #endregion
 
         public void Dispose()
