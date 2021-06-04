@@ -17,6 +17,8 @@ namespace AdventureWorks.Repository.UnitOfWork
     public class AWUnitOfWork : IUnitOfWork
     {
         private readonly AWContext _context;
+
+        public AWContext Context { get { return _context; } }
         public AWUnitOfWork(AWContext context)
         {
             _context = context;

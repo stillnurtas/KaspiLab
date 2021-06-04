@@ -47,7 +47,10 @@ namespace AdventureWorks.Web.Models
         public string PostalCode { get; set; }
 
         [Required]
-        [Display(Name = "State")]
-        public List<SelectListItem> States { get; set; }
+        [Display(Name = "Provinces")]
+        public List<SelectListItem> States { get; set; } = new List<SelectListItem>();
+
+        [Required]
+        public int State { get; set; }
     }
 }

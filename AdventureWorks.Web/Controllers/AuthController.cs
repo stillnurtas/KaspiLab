@@ -4,6 +4,7 @@ using AdventureWorks.DTO.Models.BL;
 using AdventureWorks.Web.AW.AuthService;
 using AdventureWorks.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,6 @@ namespace AdventureWorks.Web.Controllers
     public class AuthController : Controller
     {
         private IAuthenticationManager AuthMng { get { return HttpContext.GetOwinContext().Authentication; } }
-
 
 
         public ActionResult Login()
@@ -47,6 +47,7 @@ namespace AdventureWorks.Web.Controllers
                         {
                             IsPersistent = true
                         }, claim);
+
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -71,7 +72,8 @@ namespace AdventureWorks.Web.Controllers
                         City = model.City,
                         PostalCode = model.PostalCode,
                         FirstName = model.FirstName,
-                        LastName = model.LastName
+                        LastName = model.LastName,
+                        StateProvinceID = model.State
                     };
                     OperationDetails operationDetails = await Task.Run(() => client.Register(regisDTO));
                     if (operationDetails.Status == OperationDetails.Statuses.Success)
@@ -88,12 +90,12 @@ namespace AdventureWorks.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Register()
+        public async Task<ActionResult> Register()
         {
             RegisterViewModel model = new RegisterViewModel();
             using (AuthServiceClient client = new AuthServiceClient())
             {
-                var res = client.GetRegisInfo();
+                var res = await Task.Run(() => client.GetRegisInfo());
                 res.Provinces.ForEach(p => model.States.Add(new SelectListItem { Text = p.Name, Value = Convert.ToString(p.Id) }));
             }
             return View(model);

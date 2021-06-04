@@ -1,5 +1,6 @@
 ﻿using AdventureWorks.Auth.Identity;
 using AdventureWorks.Auth.IdentityManagers;
+using AdventureWorks.EF.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace AdventureWorks.Repository.Interfaces
         IPersonRepository Person { get; }
         #endregion
 
+        AWContext Context { get; }
         Task<int> Save();
     }
 }

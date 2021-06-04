@@ -28,10 +28,18 @@ namespace AdventureWorks.ConsoleApp
 
         static async Task Test()
         {
-            using (var uow = new AWContext())
+            var _uow = new AWUnitOfWork(new AWContext());
+            var address = new Address
             {
-                var s = uow.Person.ToList();
-            }
+                AddressLine1 = "asda",
+                City = "Astana",
+                StateProvinceID = 11,
+                PostalCode = "000155",
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            };
+            _uow.Address.Create(address);
+            await _uow.Save();
         }
     }
 }

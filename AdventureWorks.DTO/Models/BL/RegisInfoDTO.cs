@@ -11,7 +11,7 @@ namespace AdventureWorks.DTO.Models.BL
     public class RegisInfoDTO
     {
         [DataMember]
-        public List<Province> Provinces { get; set; }
+        public List<Province> Provinces { get; set; } = new List<Province>();
     }
 
     [DataContract]

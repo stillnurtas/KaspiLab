@@ -5,8 +5,10 @@ namespace AdventureWorks.EF.Contexts
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using AdventureWorks.EF.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using AdventureWorks.EF.Models.IdentityModels;
 
-    public partial class AWContext : DbContext
+    public partial class AWContext : IdentityDbContext<AppUser, AppRole, int, AppUserLogin, AppUserRole, AppUserClaim>
     {
         public AWContext()
             : base("name=AdventureWorks")

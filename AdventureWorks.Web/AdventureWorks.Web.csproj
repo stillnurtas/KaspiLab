@@ -234,6 +234,7 @@
     <Compile Include="Models\SCProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AutofacConfig.cs" />
+    <Compile Include="Util\ApplicationUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\AW.AuthService\AuthService.wsdl" />

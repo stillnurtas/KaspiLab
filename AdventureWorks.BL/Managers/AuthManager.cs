@@ -12,6 +12,7 @@ using AdventureWorks.Repository.UnitOfWork;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -23,11 +24,11 @@ namespace AdventureWorks.BL.Managers
     {
         private readonly AppUserManager _userMng;
         private readonly AppRoleManager _roleMng;
-        private readonly AWUnitOfWork _uow;
+        private readonly IUnitOfWork _uow;
 
         public AuthManager()
         {
-            _userMng = new AppUserManager(new AppUserStore(new AWContext_old()));
+            _userMng = new AppUserManager(new AppUserStore(new AWContext()));
             _uow = new AWUnitOfWork(new AWContext());
         }
         public async Task<ClaimsIdentity> Authenticate(UserDTO userDto)
@@ -45,7 +46,7 @@ namespace AdventureWorks.BL.Managers
                 AppUser user = await _userMng.FindByEmailAsync(userDto.Email);
                 if (user == null)
                 {
-                    var entityId = CreateClient(userDto);
+                    var entityId = await CreateClient(userDto);
                     user = new AppUser { UserName = userDto.Email, Email = userDto.Email, BusinessEntityID = entityId };
                     var result = await _userMng.CreateAsync(user, userDto.Password);
                     if (result.Errors.Count() > 0)
@@ -67,31 +68,62 @@ namespace AdventureWorks.BL.Managers
             }
         }
 
-        private int CreateClient(RegisDTO registerDto)
+        private async Task<int> CreateClient(RegisDTO registerDto)
         {
-            using (_uow)
+            using (DbContextTransaction transaction = _uow.Context.Database.BeginTransaction())
             {
-                var entityID = new BusinessEntity();
-                var person = new Person { BusinessEntityID = entityID.BusinessEntityID, PersonType = "GC", FirstName = registerDto.FirstName, LastName = registerDto.LastName };
-                var address = new Address { AddressLine1 = registerDto.Address, City = registerDto.City, StateProvinceID = registerDto.StateProvinceID, PostalCode = registerDto.PostalCode };
-                _uow.BusinessEntity.Create(entityID);
-                _uow.Person.Create(person);
-                _uow.Address.Create(address);
-                _uow.Customer.Create(new Customer { PersonID = person.BusinessEntityID, TerritoryID = registerDto.StateProvinceID });
-                _uow.BusinessEntityAddress.Create(new BusinessEntityAddress
+                try
                 {
-                    BusinessEntityID = entityID.BusinessEntityID,
-                    AddressTypeID = 2,
-                    AddressID = address.AddressID
-                });
+                    var bEntity = new BusinessEntity() { ModifiedDate = DateTime.Now, rowguid = Guid.NewGuid() };
+                    _uow.BusinessEntity.Create(bEntity);
+                    await _uow.Save();
+                    var person = new Person { BusinessEntityID = bEntity.BusinessEntityID, 
+                                              PersonType = "GC", 
+                                              FirstName = registerDto.FirstName, 
+                                              LastName = registerDto.LastName,
+                                              rowguid = Guid.NewGuid(),
+                                              ModifiedDate = DateTime.Now };
+                    _uow.Person.Create(person);
+                    await _uow.Save();
+                    var address = new Address { AddressLine1 = registerDto.Address, 
+                                                City = registerDto.City, 
+                                                StateProvinceID = registerDto.StateProvinceID, 
+                                                PostalCode = registerDto.PostalCode,
+                                                rowguid = Guid.NewGuid(),
+                                                ModifiedDate = DateTime.Now };
+                    _uow.Address.Create(address);
+                    await _uow.Save();
 
-                return entityID.BusinessEntityID;
+                    var bEntityAddress = new BusinessEntityAddress
+                    {
+                        BusinessEntityID = bEntity.BusinessEntityID,
+                        AddressTypeID = 2,
+                        AddressID = address.AddressID,
+                        ModifiedDate = DateTime.Now,
+                        rowguid = Guid.NewGuid()
+                    };
+                    _uow.BusinessEntityAddress.Create(bEntityAddress);
+                    await _uow.Save();
+                    _uow.Customer.Create(new Customer { PersonID = person.BusinessEntityID, 
+                                                        TerritoryID = registerDto.StateProvinceID,
+                                                        rowguid = Guid.NewGuid(),
+                                                        ModifiedDate = DateTime.Now});;
+                    await _uow.Save();
+                    transaction.Commit();
+
+                    return bEntity.BusinessEntityID;
+                }
+                catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
         public async Task<RegisInfoDTO> GetRegisInfo()
         {
-            using(_uow)
+            using (_uow)
             {
                 RegisInfoDTO regisInfo = new RegisInfoDTO();
                 var states = await _uow.StateProvince.GetAll();
